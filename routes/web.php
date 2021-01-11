@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Livewire\Landingpage;
+use App\Http\Livewire\VMTPage;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,9 +19,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/', Landingpage::class);
 
 
 Route::group(['middleware' => [
@@ -27,9 +31,12 @@ Route::group(['middleware' => [
     'verified'
 ]], function () {
 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/', Landingpage::class);
 
+    // Route::get('/dashboard', function () {
+    //     return view('dashboard');
+    // })->name('dashboard');
 });
 
+Route::get('/', Landingpage::class);
+Route::get('/profil/visiMisiTujuan', VMTPage::class);
