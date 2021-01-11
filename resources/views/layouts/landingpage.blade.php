@@ -13,7 +13,7 @@
 
         
         <!-- Fonts -->
-        {{-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap"> --}}
+        <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap"> --}} -->
         
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -28,24 +28,24 @@
         <link href="{{ asset('tpl/vendor/owl.carousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
         <link href="{{ asset('tpl/vendor/aos/aos.css') }}" rel="stylesheet">
 
-        {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"> --}}
+        <!-- {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"> --}}
         {{-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"> --}}
         {{-- <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> --}}
-        {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet"> --}}
+        {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet"> --}} -->
         
 
         <!-- Template Main CSS File -->
         <link href="{{ asset('tpl/css/style.css') }}" rel="stylesheet">
 
         <!-- Boxicons CSS -->
-        {{-- <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'> --}}
+        <!-- {{-- <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'> --}} -->
 
-        {{-- remixicon --}}
-        {{-- <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet"> --}}
+        <!-- {{-- remixicon --}} -->
+        <!-- {{-- <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet"> --}} -->
 
-        {{-- <script src="https://use.fontawesome.com/1234e569d5.js"></script> --}}
+        <!-- {{-- <script src="https://use.fontawesome.com/1234e569d5.js"></script> --}} -->
         <!-- Styles -->
-        {{-- <link rel="stylesheet" href="{{ mix('css/app.css') }}"> --}}
+        <!-- {{-- <link rel="stylesheet" href="{{ mix('css/app.css') }}"> --}} -->
 
         @trixassets
 
@@ -71,7 +71,7 @@
                         <nav class="nav-menu d-none d-lg-block">
                 <ul>
                     <li> <a href="/">Home</a></li>
-                    <li class="drop-down"><a href="#" style="cursor: context-menu;">Profil</a>
+                    <li class="drop-down"><a style="cursor: context-menu;">Profil</a>
                         <ul>
                             <li><a class="nav-link" href="{{ url('/profil/visiMisiTujuan') }}">Visi, Misi dan Tujuan</a></li>
                             <li><a href="/identitasSekolah">Identitas Sekolah</a></li>
@@ -156,15 +156,7 @@
                 </div>
             </header><!-- End Header -->
 
-            {{-- Hero section --}}
-            <section id="hero" class="d-flex align-items-center">
-                <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200" style="
-                height: 200px;">
-                    <h1>SMK NEGERI 1 GRUJUGAN</h1>
-                    <h2>(JARGONNYA BIAR MANTAP)</h2>
-                    {{-- <a href="#" class="btn-get-started scrollto">Get Started</a> --}}
-                </div>
-            </section><!-- End Hero -->
+            
 
             {{-- @livewire('navigation-dropdown')
 

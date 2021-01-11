@@ -1,4 +1,13 @@
 <main id="main">
+    <!-- {{-- Hero section --}} -->
+    <section id="hero" class="d-flex align-items-center">
+        <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200" style="
+        height: 200px;">
+            <h1>SMK NEGERI 1 GRUJUGAN</h1>
+            <h2>(JARGONNYA BIAR MANTAP)</h2>
+            {{-- <a href="#" class="btn-get-started scrollto">Get Started</a> --}}
+        </div>
+    </section><!-- End Hero -->
 
     <!-- ======= Team Section ======= -->
     <section id="jurusan" class="jurusan">
