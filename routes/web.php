@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\IdentitasSekolah;
 use App\Http\Livewire\Landingpage;
 use App\Http\Livewire\VMTPage;
 use Illuminate\Support\Facades\Route;
@@ -40,3 +41,4 @@ Route::group(['middleware' => [
 
 Route::get('/', Landingpage::class);
 Route::get('/profil/visiMisiTujuan', VMTPage::class);
+Route::get('/profil/identitasSekolah', IdentitasSekolah::class);

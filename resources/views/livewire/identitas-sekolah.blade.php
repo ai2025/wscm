@@ -6,21 +6,21 @@
         </ol>
         <div class="carousel-inner" style="width :1225px; height : 520px;">
         <div class="carousel-item active">
-            <img class="d-block w-100" src="/assets/img/hero-bg.jpg" alt="First slide">
+            <img class="d-block w-100" src="/tpl/img/hero-bg.jpg" alt="First slide">
             <div class="carousel-caption d-none d-md-block">
             <h3>SLIDE 1</h3>
             <p>Ini gambar</p>
             </div>
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100" src="/assets/img/hero-bg.jpg" alt="Second slide">
+            <img class="d-block w-100" src="/tpl/img/hero-bg.jpg" alt="Second slide">
             <div class="carousel-caption d-none d-md-block">
             <h3>SLIDE 1</h3>
             <p>Ini gambar</p>
             </div>
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100" src="/assets/img/hero-bg.jpg" alt="Third slide">
+            <img class="d-block w-100" src="/tpl/img/hero-bg.jpg" alt="Third slide">
             <div class="carousel-caption d-none d-md-block">
             <h3>SLIDE 1</h3>
             <p>Ini gambar</p>
@@ -82,4 +82,3 @@
     <!-- End visiMisiTujuan Section -->
     </main>
 <!-- End #main -->
-<!-- @endsection -->

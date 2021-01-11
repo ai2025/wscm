@@ -65,7 +65,7 @@
                         <div class="logo">
                             {{-- <h1 class="text-light"><a href="index.html"><span>SKAGU</span></a></h1> --}}
                             <!-- Uncomment below if you prefer to use an image logo -->
-                            <a href="index.html"><img src="{{ asset('tpl/img/logosekolah.png') }}" alt="" class="img-fluid"></a>
+                            <a href="/"><img src="{{ asset('tpl/img/logosekolah.png') }}" alt="" class="img-fluid"></a>
                         </div>
 
                         <nav class="nav-menu d-none d-lg-block">
@@ -73,79 +73,73 @@
                     <li> <a href="/">Home</a></li>
                     <li class="drop-down"><a style="cursor: context-menu;">Profil</a>
                         <ul>
-                            <li><a class="nav-link" href="{{ url('/profil/visiMisiTujuan') }}">Visi, Misi dan Tujuan</a></li>
-                            <li><a href="/identitasSekolah">Identitas Sekolah</a></li>
-                            <li><a href="/strukturOrg">Struktur Organisasi</a></li>
-                            <li><a href="/jmlhSiswa">Jumlah Peserta Didik</a></li>
+                            <li><a href="{{ url('/profil/visiMisiTujuan') }}">Visi, Misi dan Tujuan</a></li>
+                            <li><a href="{{ url('/profil/identitasSekolah') }}">Identitas Sekolah</a></li>
+                            <li><a href="{{ url('/profil/strukturOrg') }}">Struktur Organisasi</a></li>
                         </ul>
                     </li>
                     <li class="drop-down"><a style="cursor: context-menu;">Paket Keahlian</a>
                         <ul>
-                            <li><a href="/agbsnsTani">Agribisnis Pengolahan Hasil Pertanian</a></li>
-                            <li><a href="/agsbnsIkan">Agribisnis Pengolahan Hasil Perikanan</a></li>
+                            <li><a href="{{ url('/pktKeahlian/agbsnsTani') }}">Agribisnis Pengolahan Hasil Pertanian</a></li>
+                            <li><a href="{{ url('/pktKeahlian/agsbnsIkan') }}">Agribisnis Pengolahan Hasil Perikanan</a></li>
                         </ul>
                     </li>
                     <li class="drop-down"><a style="cursor: context-menu;">BKK</a>
                         <ul>
-                            <li><a href="/tntgBKK">Tentang (BKK)</a></li>
-                            <li><a href="/orgnssBKK">Organisasi (BKK)</a></li>
-                            <li><a href="/inputDataAlumni">Input Data Alumni</a></li>
+                            <li><a href="{{ url('/bkk/tntgBKK') }}">Tentang (BKK)</a></li>
+                            <li><a href="{{ url('/bkk/orgnssBKK') }}">Organisasi (BKK)</a></li>
+                            <li><a href="{{ url('/bkk/inputDataAlumni') }}">Input Data Alumni</a></li>
                         </ul>
                     </li>
                     
                     <li class="drop-down"><a style="cursor: context-menu;">Kurikulum</a>
                         <ul>
-                            <li><a href="/tntgKrklm">Tentang Kurikulum</a></li>
-                            <li><a href="/organisasi">Organisasi Kurikulum</a></li>
-                            <li><a href="/klndrPmbljaran">Kalender Pembelajaran</a></li>
-                            <li><a href="/pmbljaran">Pembelajaran</a></li>
-                            <li><a href="/penilaian">Penilaian</a></li>
-                            <li><a href="/srtfkasi">Sertifikasi</a></li>
+                            <li><a href="{{ url('/kurikulum/tntgKrklm') }}">Tentang Kurikulum</a></li>
+                            <li><a href="{{ url('/kurikulum/organisasi') }}">Organisasi Kurikulum</a></li>
+                            <li><a href="{{ url('/kurikulum/klndrPmbljaran') }}">Kalender Pembelajaran</a></li>
+                            <li><a href="{{ url('/kurikulum/pmbljaran') }}">Pembelajaran</a></li>
+                            <li><a href="{{ url('/kurikulum/penilaian') }}">Penilaian</a></li>
+                            <li><a href="{{ url('/kurikulum/srtfkasi') }}">Sertifikasi</a></li>
                         </ul>
                     </li>
                     <li class="drop-down"><a style="cursor: context-menu;">Humas</a>
                         <ul>
-                            <li><a href="/tntgHum">Tentang (Humas)</a></li>
-                            <li><a href="/orgnssHum">Organisasi (Humas)</a></li>
-                            <li><a href="/prgrmkrjHum">Program Kerja (Humas)</a></li>
-                            <li><a href="/pkl">PKL</a></li>
+                            <li><a href="{{ url('/humas/tntgHum') }}">Tentang (Humas)</a></li>
+                            <li><a href="{{ url('/humas/orgnssHum') }}">Organisasi (Humas)</a></li>
+                            <li><a href="{{ url('/humas/prgrmkrjHum') }}">Program Kerja (Humas)</a></li>
+                            <li><a href="{{ url('/humas/pkl') }}">PKL</a></li>
                         </ul>
                     </li>
                     <li class="drop-down"><a style="cursor: context-menu;">Kesiswaan</a>
                         <ul>
-                            <li><a href="/tntgSis">Tentang (Kesiswaan)</a></li>
-                            <li><a href="/orgnssSis">Organisasi (Kesiswaan)</a></li>
-                            <li><a href="/prgrmkrjSis">Program Kerja (Kesiswaan)</a></li>
-                            <li><a href="/ekskul">Ekstrakurikuler</a></li>
-                            <li><a href="/kegOsis">Kegiatan OSIS</a></li>
-                            <li><a href="/kegPram">Kegiatan Pramuka</a></li>
-                            <li><a href="/dokKeg">Dokumen Kegiatan</a></li>
+                            <li><a href="{{ url('/kesiswaan/tntgSis') }}">Tentang (Kesiswaan)</a></li>
+                            <li><a href="{{ url('/kesiswaan/orgnssSis') }}">Organisasi (Kesiswaan)</a></li>
+                            <li><a href="{{ url('/kesiswaan/prgrmkrjSis') }}">Program Kerja (Kesiswaan)</a></li>
+                            <li><a href="{{ url('/kesiswaan/ekskul') }}">Ekstrakurikuler</a></li>
+                            <li><a href="{{ url('/kesiswaan/kegOsis') }}">Kegiatan OSIS</a></li>
+                            <li><a href="{{ url('/kesiswaan/kegPram') }}">Kegiatan Pramuka</a></li>
+                            <li><a href="{{ url('/kesiswaan/prestasi') }}">Prestasi</a></li>
                         </ul>
                     </li>
                     <li class="drop-down"><a style="cursor: context-menu;">Sarana Prasarana</a>
                         <ul>
-                            <li><a href="/tntgSarpras">Tentang (SarPras)</a></li>
-                            <li><a href="/orgnssSarpras">Organisasi (SarPras)</a></li>
-                            <li><a href="/prgrmkrjSarpras">Program Kerja (SarPras)</a></li>
-                            <li><a href="/fasSek">Fasilitas Sekolah</a></li>
+                            <li><a href="{{ url('/sarpras/tntgSarpras') }}">Tentang (SarPras)</a></li>
+                            <li><a href="{{ url('/sarpras/orgnssSarpras') }}">Organisasi (SarPras)</a></li>
+                            <li><a href="{{ url('/sarpras/prgrmkrjSarpras') }}">Program Kerja (SarPras)</a></li>
+                            <li><a href="{{ url('/sarpras/fasSek') }}">Fasilitas Sekolah</a></li>
                         </ul>
                     </li>
                     <li class="drop-down"><a style="cursor: context-menu;">Perpustakaan</a>
                         <ul>
-                            <li><a href="/tntgPerpus">Tentang (Perpustakaan)</a></li>
-                            <li><a href="/orgnssPerpus">Organisasi (Perpustakaan)</a></li>
+                            <li><a href="{{ url('/perpus/tntgPerpus') }}">Tentang (Perpustakaan)</a></li>
+                            <li><a href="{{ url('/perpus/orgnssPerpus') }}">Organisasi (Perpustakaan)</a></li>
                         </ul>
                     </li>
-                    <li class="drop-down"><a style="cursor: context-menu;">Informasi</a>
-                        <ul>
-                            <li><a href="/berita">Berita</a></li>
-                            <li><a href="/inform">Informasi</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="{{ url('/inform') }}">Informasi</a></li>
                     
-                    <li><a href="/ppdb">PPDB</a></li>
+                    <li><a href="{{ url('/ppdb') }}">PPDB</a></li>
                     
-                    <li><a href="/kontak">Kontak</a></li>
+                    <li><a href="{{ url('/kontak') }}">Kontak</a></li>
 
                     <!-- <li class="get-started"><a href="#about">Get Started</a></li> -->
                 </ul>
