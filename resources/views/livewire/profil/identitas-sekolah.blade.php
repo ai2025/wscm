@@ -4,25 +4,25 @@
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
-        <div class="carousel-inner" style="width :1225px; height : 520px;">
+    <div class="carousel-inner" style="background-color: rgb(58, 141, 60)">
         <div class="carousel-item active">
-            <img class="d-block w-100" src="/tpl/img/hero-bg.jpg" alt="First slide">
-            <div class="carousel-caption d-none d-md-block">
-            <h3>SLIDE 1</h3>
+            <img class="d-block w-auto mx-auto d-block" style="height: 512px;" src="/tpl/img/hero-bg.jpg" alt="First slide">
+            <div class="carousel-caption d-none d-md-block w-auto" style="background-color: rgba(76, 175, 80, 0.8)">
+            <h4>SLIDE 1</h4>
             <p>Ini gambar</p>
             </div>
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100" src="/tpl/img/hero-bg.jpg" alt="Second slide">
-            <div class="carousel-caption d-none d-md-block">
-            <h3>SLIDE 1</h3>
+            <img class="d-block w-auto mx-auto d-block" style="height: 512px;" src="/tpl/img/hero-bg.jpg" alt="Second slide">
+            <div class="carousel-caption d-none d-md-block" style="background-color: rgba(76, 175, 80, 0.8)">
+            <h4>SLIDE 2</h4>
             <p>Ini gambar</p>
             </div>
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100" src="/tpl/img/hero-bg.jpg" alt="Third slide">
-            <div class="carousel-caption d-none d-md-block">
-            <h3>SLIDE 1</h3>
+            <img class="d-block w-auto mx-auto d-block" style="height: 512px;" src="/tpl/img/hero-bg.jpg" alt="Third slide">
+            <div class="carousel-caption d-none d-md-block" style="background-color: rgba(76, 175, 80, 0.8)">
+            <h4>SLIDE 3</h4>
             <p>Ini gambar</p>
             </div>
         </div>

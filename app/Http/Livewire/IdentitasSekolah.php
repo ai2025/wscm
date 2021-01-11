@@ -8,6 +8,6 @@ class IdentitasSekolah extends Component
 {
     public function render()
     {
-        return view('livewire.identitas-sekolah')->layout('layouts.landingpage');
+        return view('livewire.profil.identitas-sekolah')->layout('layouts.landingpage');
     }
 }
