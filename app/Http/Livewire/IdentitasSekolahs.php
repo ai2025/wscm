@@ -71,6 +71,8 @@ class IdentitasSekolahs extends Component
         $this->validate();
         // dd($this->id_identitas);
         IdentitasSekolah::find($this->id_identitas)->update($this->modelData());
+        session()->flash('msgUpdateIdentitas', 'Identitas Sekolah successfully updated.');
+        return redirect()->to('/profil/identitasSekolah');
         // $statusUp = true;
         // $this->statusUpdate();
     }

@@ -64,8 +64,19 @@
                                         Terimakasih.
                                     </p>
                                     <hr>
-                                    <p class="mb-0">Cek kembali data pada kolom input sebelum melakukan update.</p>
+                                    <p class="mb-0">Cek kembali data pada kolom input sebelum melakukan update.</p>                                    
                                 </div>
+
+                                @if (session()->has('msgUpdateIdentitas'))
+                                        {{-- <p class="mb-0">{{ session('msgUpdateIdentitas') }}</p> --}}
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                            <strong>Yay!</strong> {{ session('msgUpdateIdentitas') }}
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div>
+                                    @endif
+                                
                                 @endauth
                             </div>
                         </div>
