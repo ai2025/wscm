@@ -5,15 +5,18 @@ namespace App\Http\Livewire;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use App\Models\IdentitasSekolah;
+// use Livewire\WithPagination;
 
 class IdentitasSekolahs extends Component
 {
 
+    // use WithPagination;
+
     public $modalIdentitas = false;
 
-    public $nama, $nis, $alamat, $kab, $provinsi, $negara, $email, $web, $telp, $pos;
-    public $ids;
-    // public $idform;
+    public $nama, $nis, $alamat, $kab, $provinsi, $negara, $email, $web, $telp, $pos, $id_identitas;
+    // public $ids;
+    // public $statusUp = false;
 
     public $judul = [
         'nama' => 'Nama Sekolah',
@@ -25,13 +28,8 @@ class IdentitasSekolahs extends Component
         'email' => 'Email',
         'web' => 'Website',
         'telp' => 'Telepon',
-        'pos' => 'POS',
+        'pos' => 'Kode POS',
     ];
-
-    public function index()
-    {
-        # code...
-    }
 
     // public $judul = [
     //     ['nama', 'Nama Sekolah', $ids->nama],
@@ -49,41 +47,56 @@ class IdentitasSekolahs extends Component
     public function rules()
     {
         return [
-            'nama' => 'required',
-            'nis' => 'required',
-            'alamat' => 'required',
-            'kab' => 'required',
-            'provinsi' => 'required',
-            'negara' => 'required',
-            'email' => 'required',
-            'web' => 'required',
-            'telp' => 'required',
-            'pos' => 'required',
+            'nama' => ['required', 'min:5'],
+            'nis' => ['required', 'min:6', 'numeric'],
+            'alamat' => ['required', 'min:5'],
+            'kab' => ['required', 'min:3'],
+            'provinsi' => ['required', 'min:3'],
+            'negara' => ['required', 'min:3'],
+            'email' => ['required', 'min:5', 'email'],
+            'web' => ['required', 'min:5'],
+            'telp' => ['required', 'min:5', 'numeric'],
+            'pos' => ['required', 'min:4', 'numeric'],
         ];
     }
 
     public function read()
     {
-        return $this->ids = IdentitasSekolah::orderBy('created_at', 'DESC')->get();
+        return IdentitasSekolah::orderBy('created_at', 'DESC')->get();
+        // $this->resetPage();
     }
 
-    public function updateIdentitas($id)
+    public function update()
     {
         $this->validate();
-        dd("Updating.." + $id);
-        // $this->idform = $id;
-        // $data = IdentitasSekolah::find($id);
-        // $this->nama = $data->nama;
-        // $this->nis = $data->nis;
-        // $this->alamat = $data->alamat;
-        // $this->kab = $data->kab;
-        // $this->provinsi = $data->provinsi;
-        // $this->negara = $data->negara;
-        // $this->email = $data->email;
-        // $this->web = $data->web;
-        // $this->telp = $data->telp;
-        // $this->pos = $data->pos;
+        // dd($this->id_identitas);
+        IdentitasSekolah::find($this->id_identitas)->update($this->modelData());
+        // $statusUp = true;
+        // $this->statusUpdate();
     }
+
+    // public function statusUpdate()
+    // {
+    //     return true;
+    // }
+
+    // public function updateIdentitas($id)
+    // {
+    // $this->validate();
+    // dd("Updating.." + $id);
+    // $this->idform = $id;
+    // $data = IdentitasSekolah::find($id);
+    // $this->nama = $data->nama;
+    // $this->nis = $data->nis;
+    // $this->alamat = $data->alamat;
+    // $this->kab = $data->kab;
+    // $this->provinsi = $data->provinsi;
+    // $this->negara = $data->negara;
+    // $this->email = $data->email;
+    // $this->web = $data->web;
+    // $this->telp = $data->telp;
+    // $this->pos = $data->pos;
+    // }
 
     /**
      * show Edit Identitas Modal
@@ -94,6 +107,22 @@ class IdentitasSekolahs extends Component
     // {
     //     $this->modalIdentitas = true;
     // }
+
+    public function loadData($id)
+    {
+        $this->id_identitas = $id;
+        $data = IdentitasSekolah::find($id)->first();
+        $this->nama = $data->nama;
+        $this->nis = $data->nis;
+        $this->alamat = $data->alamat;
+        $this->kab = $data->kab;
+        $this->provinsi = $data->provinsi;
+        $this->negara = $data->negara;
+        $this->email = $data->email;
+        $this->web = $data->web;
+        $this->telp = $data->telp;
+        $this->pos = $data->pos;
+    }
 
     /**
      * pemetaan data untuk model
@@ -111,7 +140,7 @@ class IdentitasSekolahs extends Component
             'negara' => $this->negara,
             'email' => $this->email,
             'web' => $this->web,
-            'telp' => $this->tel,
+            'telp' => $this->telp,
             'pos' => $this->pos,
         ];
     }
@@ -125,6 +154,7 @@ class IdentitasSekolahs extends Component
     {
         return view('livewire.profil.identitas-sekolah', [
             'data' => $this->read(),
+            // 'statusUp' => $this->statusUpdate(),
         ])->layout('layouts.landingpage');
     }
 }

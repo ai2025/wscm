@@ -65,7 +65,7 @@
                                     </p>
                                     <hr>
                                     <p class="mb-0">Cek kembali data pada kolom input sebelum melakukan update.</p>
-                                </div>                                
+                                </div>
                                 @endauth
                             </div>
                         </div>
@@ -93,27 +93,26 @@
 
                                     <ul class="list-group list-group-flush text-left mt-3 pr-5 pl-5 pb-3">
                                         @php
-                                            $count = 0;
-                                            $co = 0;
+                                        $count = 0;
+                                        $co = 0;
                                         @endphp
                                         <div class="row">
                                             {{-- {{ $count = 0 }} --}}
-                                            <div class="col list-group-flush">                                                
+                                            <div class="col list-group-flush">
                                                 @foreach($judul as $code => $item)
                                                 {{-- @foreach ($data as $isi) --}}
-                                                @if ($count < 5) 
-                                                    <li class="list-group-item border-bottom">
-                                                        <p>
-                                                            {{ __($item) }} &ensp; : &ensp; {{ $isi->$code }}
-                                                        </p>
+                                                @if ($count < 5) <li class="list-group-item border-bottom">
+                                                    <p>
+                                                        {{ __($item) }} &ensp; : &ensp; {{ $isi->$code }}
+                                                    </p>
                                                     </li>
                                                     @php
-                                                        $count++;
+                                                    $count++;
                                                     @endphp
                                                     {{-- {{ $count++ }} --}}
-                                                @endif
-                                                {{-- @endforeach --}}
-                                                @endforeach
+                                                    @endif
+                                                    {{-- @endforeach --}}
+                                                    @endforeach
                                             </div>
 
                                             {{-- @php
@@ -123,24 +122,19 @@
                                             <div class="col list-group-flush">
                                                 @foreach($judul as $code => $item)
                                                 {{-- @foreach ($data as $isi) --}}
-                                                @if ($co < 5)
-                                                @php
-                                                    $co++;
-                                                @endphp
-                                                {{-- {{ $co++ }} --}}
-                                                @else
-                                                <li class="list-group-item border-bottom">
+                                                @if ($co < 5) @php $co++; @endphp {{-- {{ $co++ }} --}} @else <li
+                                                    class="list-group-item border-bottom">
                                                     <p>
                                                         {{ __($item) }} &ensp; : &ensp; {{ $isi->$code }}
                                                     </p>
-                                                </li>
-                                                @php
+                                                    </li>
+                                                    @php
                                                     $co++;
-                                                @endphp
-                                                {{-- {{ $co++ }} --}}
-                                                @endif
-                                                {{-- @endforeach --}}
-                                                @endforeach
+                                                    @endphp
+                                                    {{-- {{ $co++ }} --}}
+                                                    @endif
+                                                    {{-- @endforeach --}}
+                                                    @endforeach
                                             </div>
                                         </div>
                                     </ul>
@@ -148,7 +142,7 @@
                                     @auth
                                     <div>
                                         <button type="button" class="btn btn-outline-primary" data-toggle="modal"
-                                            wire:click="updateIdentitas({{ $isi->id }})>" data-target="#updateIdentitasMDL">
+                                            wire:click="loadData({{ $isi->id }})" data-target="#updateIdentitasMDL">
                                             Update Data
                                         </button>
                                         {{-- <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalIdentitas">Edit Data</button> --}}
@@ -199,48 +193,69 @@
         </section>
         <!-- End visiMisiTujuan Section -->
         <!-- Modal -->
-        <div wire:ignore.self class="modal fade" id="updateIdentitasMDL" data-backdrop="static" data-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
+        <div wire:ignore.self class="modal fade" id="updateIdentitasMDL" data-backdrop="static" data-keyboard="false"
+            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel">Update Identitas Sekolah</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        {{-- <form action="forms/contact.php" method="post" role="form" class="php-email-form mt-4">
-                            <div class="form-row">
-                              <div class="col-md-6 form-group">
-                                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                        <form wire:submit.prevent="submit" class="php-email-form">
+                            @foreach($judul as $code => $item)
+                            @if ($code == 'alamat')
+                            <label for="{{ __($code) }}">{{ __($item) }}</label>
+                            <div class="form-group">
+                                <textarea class="form-control" name="{{ __($code) }}" rows="2"
+                                wire:model.debounce.800ms="{{ __($code) }}"></textarea>
+                                    @error($code)
+                                    <span id="error-msg">{{ $message }}</span>
+                                    @enderror
+                                {{-- <div class="validate"></div> --}}
+                            </div>
+                            @else
+                            <div class="form-group">
+                                <label for="{{ __($code) }}">{{ __($item) }}</label>
+                                <input type="text" class="form-control" name="{{ __($code) }}" id="{{ __($code) }}"
+                                wire:model.debounce.800ms="{{ __($code) }}"/>
+                                @error($code)
+                                <span id="error-msg">{{ $message }}</span>
+                                @enderror
+                                
+                            </div>
+                            @endif
+                            @endforeach
+                            {{-- <div class="form-group">
+                                <input type="text" class="form-control" name="subject" id="subject"
+                                    placeholder="Subject" data-rule="minlen:4"
+                                    data-msg="Please enter at least 8 chars of subject" />
                                 <div class="validate"></div>
-                              </div>
-                              <div class="col-md-6 form-group">
-                                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
-                                <div class="validate"></div>
-                              </div>
                             </div>
                             <div class="form-group">
-                              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-                              <div class="validate"></div>
+                                <textarea class="form-control" name="message" rows="5" data-rule="required"
+                                    data-msg="Please write something for us" placeholder="Message"></textarea>
+                                <div class="validate"></div>
+                            </div> --}}
+                            {{-- <div class="mb-3">
+                                <div class="loading">Loading</div>
+                                <div class="error-message"></div>
+                                <div class="sent-message">Your message has been sent. Thank you!</div>
                             </div>
-                            <div class="form-group">
-                              <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
-                              <div class="validate"></div>
-                            </div>
-                            <div class="mb-3">
-                              <div class="loading">Loading</div>
-                              <div class="error-message"></div>
-                              <div class="sent-message">Your message has been sent. Thank you!</div>
-                            </div>
-                            <div class="text-center"><button type="submit">Send Message</button></div>
-                          </form> --}}
+                            <div class="text-center"><button type="submit">Send Message</button></div> --}}
+                        
                     </div>
                     <div class="modal-footer">
+                        <input type="hidden" name="id_identitas" wire:model="id_identitas">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Understood</button>
+                        <button type="button" class="btn btn-primary" wire:click="update">Update</button>                        
                     </div>
+                </form>
+                {{-- @if ($statusUp == true)
+                    <div data-dismiss="modal"></div>
+                @endif --}}
                 </div>
             </div>
         </div>
