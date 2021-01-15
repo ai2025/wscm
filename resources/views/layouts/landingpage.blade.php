@@ -177,16 +177,21 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-5 col-md-6 footer-contact">
-                            <h3>SMK NEGERI 1 GRUJUGAN</h3>
-                            <p>
-                            Congkrong Barat, Taman, Grujugan <br>
-                            Kabupaten Bondowoso<br>
-                            Jawa Timur 68261, Indonesia <br><br>
-                                <strong>Phone:</strong> (0332) 431110<br>
-                                <strong>Email:</strong> smkn1_grujugan@yahoo.com<br>
+                             
+                            @foreach ($data as $data)
+                        <h3>{{ $data->nama }}</h3>
+                        <p>
+                            {{ $data->alamat }} <br>
+                            {{ $data->kab }}<br>
+                            {{ $data->provinsi }}, {{ $data->pos }}, {{ $data->negara }} <br><br>
+                                <strong>Phone:</strong> {{ $data->telp }}<br>
+                                <strong>Email:</strong> {{ $data->email }}<br>
                             </p>
+                            @endforeach 
+        
+                            
                         </div>
-
+                        
                         <div class="col-lg-2 col-md-6 footer-links">
                             <h4>Useful Links</h4>
                             <ul>

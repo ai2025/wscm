@@ -3,8 +3,9 @@
     <section id="hero" class="d-flex align-items-center">
         <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200" style="
         height: 200px;">
-            <h1>SMK NEGERI 1 GRUJUGAN</h1>
-            <h2>(JARGONNYA BIAR MANTAP)</h2>
+        @foreach ($data as $data)
+            <h1>{{ $data->nama }}</h1>
+            @endforeach
             {{-- <a href="#" class="btn-get-started scrollto">Get Started</a> --}}
         </div>
     </section><!-- End Hero -->
@@ -42,6 +43,7 @@
     </section>
     <!-- End Counts Section -->
 
+    <!-- Identitas Sekolah Section -->
     <section id="identitasSekolah" class="identitasSekolah" style="
     padding-top: 0px;">
     <div class="container">

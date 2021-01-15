@@ -10,11 +10,11 @@
 </section>
 <main id="main">
     <!-- ======= fasSek Section ======= -->
-    <section id="prestasi" class="portfolio">
+    <section id="pembelajaran" class="portfolio">
         <div class="container">
   
           <div class="section-title" data-aos="fade-left">
-            <h2>Prestasi</h2>
+            <h2>Pembelajaran</h2>
             <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.
                 Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque 
                             laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi 

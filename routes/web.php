@@ -1,7 +1,6 @@
 <?php
 
-// use App\Http\Livewire\IdentitasSekolahs;
-
+use App\Http\Livewire\IdentitasSekolahs;
 use App\Http\Livewire\Akreditasi;
 use App\Http\Livewire\Ekstrakurikuler;
 use App\Http\Livewire\FasilitasSekolah;
@@ -76,7 +75,7 @@ Route::group(['middleware' => [
 Route::get('/', Landingpage::class);
 //PROFIL
 Route::get('/profil/visiMisiTujuan', VMTPage::class);
-// Route::get('/profil/identitasSekolah', IdentitasSekolahs::class);
+Route::get('/profil/identitasSekolah', IdentitasSekolahs::class);
 Route::get('/profil/strukturOrg', StrukturOrganisasi::class);
 //JURUSAN
 Route::get('/paketKeahlian/agbsnsTani', Pertanian::class);
