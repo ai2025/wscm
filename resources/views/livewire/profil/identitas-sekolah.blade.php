@@ -1,6 +1,68 @@
     <main id="main">
         <div>
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <div id="portfolio-details" class="portfolio-details">
+                <div class="portfolio-details-container" data-aos="fade-up" data-aos-delay="100">
+                    <div class="owl-carousel portfolio-details-carousel">
+                        <div class="portfolio-details-carousel">
+                            <div>
+                                <img src="{{ asset('tpl/img/portfolio/portfolio-details-1.jpg') }}" class="img-fluid" alt="">
+                                <div class="portfolio-info">
+                                    <h3>Project information</h3>
+                                    <ul>
+                                        <li><strong>Category</strong>: Web design</li>
+                                        <li><strong>Client</strong>: ASU Company</li>
+                                        <li><strong>Project date</strong>: 01 March, 2020</li>
+                                        <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-details-carousel">
+                            <div>
+                                <img src="{{ asset('tpl/img/portfolio/portfolio-details-2.jpg') }}" class="img-fluid" alt="">
+                                <div class="portfolio-info">
+                                    <h3>ALALALALAA</h3>
+                                    <ul>
+                                        <li><strong>Category</strong>: Web design</li>
+                                        <li><strong>Client</strong>: ASU Company</li>
+                                        <li><strong>Project date</strong>: 01 March, 2020</li>
+                                        <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- <div class="portfolio-details-carousel">
+                            <div>
+                                <img src="{{ asset('tpl/img/portfolio/portfolio-details-1.jpg') }}" class="img-fluid" alt="">
+                                <div class="portfolio-info">
+                                    <h3>Project information</h3>
+                                    <ul>
+                                        <li><strong>Category</strong>: Web design</li>
+                                        <li><strong>Client</strong>: ASU Company</li>
+                                        <li><strong>Project date</strong>: 01 March, 2020</li>
+                                        <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div> --}}
+                        {{-- <img src="{{ asset('tpl/img/portfolio/portfolio-details-2.jpg') }}" class="img-fluid" alt="">
+                        <img src="{{ asset('tpl/img/portfolio/portfolio-details-3.jpg') }}" class="img-fluid" alt=""> --}}
+                    </div>
+
+                    {{-- <div class="portfolio-info">
+                        <h3>Project information</h3>
+                        <ul>
+                            <li><strong>Category</strong>: Web design</li>
+                            <li><strong>Client</strong>: ASU Company</li>
+                            <li><strong>Project date</strong>: 01 March, 2020</li>
+                            <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
+                        </ul>
+                    </div> --}}
+
+                </div>
+            </div>
+
+            {{-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -43,12 +105,12 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
-            </div>
+            </div> --}}
             <!-- </section> -->
 
 
             <!-- ======= Identitas Sekolah Section ======= -->
-            <section id="identitasSekolah" class="identitasSekolah" style="padding-top: 0px;">
+            <section class="services section-bg">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
@@ -64,25 +126,25 @@
                                         Terimakasih.
                                     </p>
                                     <hr>
-                                    <p class="mb-0">Cek kembali data pada kolom input sebelum melakukan update.</p>                                    
+                                    <p class="mb-0">Cek kembali data pada kolom input sebelum melakukan update.</p>
                                 </div>
 
                                 @if (session()->has('msgUpdateIdentitas'))
-                                        {{-- <p class="mb-0">{{ session('msgUpdateIdentitas') }}</p> --}}
-                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                            <strong>Yay!</strong> {{ session('msgUpdateIdentitas') }}
-                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                              <span aria-hidden="true">&times;</span>
-                                            </button>
-                                          </div>
-                                    @endif
-                                
+                                {{-- <p class="mb-0">{{ session('msgUpdateIdentitas') }}</p> --}}
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <strong>Yay!</strong> {{ session('msgUpdateIdentitas') }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                @endif
+
                                 @endauth
                             </div>
                         </div>
                     </div>
-                    <section class="services section-bg mt-4">
-                        <div class="container">
+                    {{-- <section class="services section-bg mt-4"> --}}
+                        {{-- <div class="container"> --}}
                             @foreach ($data as $isi)
                             {{-- <div class="row"> --}}
                             {{-- <div class="col-lg-4">
@@ -200,8 +262,8 @@
                         @endforeach
                 </div>
             </section>
-        </div>
-        </section>
+        {{-- </div>
+        </section> --}}
         <!-- End visiMisiTujuan Section -->
         <!-- Modal -->
         <div wire:ignore.self class="modal fade" id="updateIdentitasMDL" data-backdrop="static" data-keyboard="false"
@@ -221,21 +283,21 @@
                             <label for="{{ __($code) }}">{{ __($item) }}</label>
                             <div class="form-group">
                                 <textarea class="form-control" name="{{ __($code) }}" rows="2"
-                                wire:model.debounce.800ms="{{ __($code) }}"></textarea>
-                                    @error($code)
-                                    <span id="error-msg">{{ $message }}</span>
-                                    @enderror
+                                    wire:model.debounce.800ms="{{ __($code) }}"></textarea>
+                                @error($code)
+                                <span id="error-msg">{{ $message }}</span>
+                                @enderror
                                 {{-- <div class="validate"></div> --}}
                             </div>
                             @else
                             <div class="form-group">
                                 <label for="{{ __($code) }}">{{ __($item) }}</label>
                                 <input type="text" class="form-control" name="{{ __($code) }}" id="{{ __($code) }}"
-                                wire:model.debounce.800ms="{{ __($code) }}"/>
+                                    wire:model.debounce.800ms="{{ __($code) }}" />
                                 @error($code)
                                 <span id="error-msg">{{ $message }}</span>
                                 @enderror
-                                
+
                             </div>
                             @endif
                             @endforeach
@@ -256,15 +318,15 @@
                                 <div class="sent-message">Your message has been sent. Thank you!</div>
                             </div>
                             <div class="text-center"><button type="submit">Send Message</button></div> --}}
-                        
+
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" name="id_identitas" wire:model="id_identitas">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" wire:click="update">Update</button>                        
+                        <button type="button" class="btn btn-primary" wire:click="update">Update</button>
                     </div>
-                </form>
-                {{-- @if ($statusUp == true)
+                    </form>
+                    {{-- @if ($statusUp == true)
                     <div data-dismiss="modal"></div>
                 @endif --}}
                 </div>
