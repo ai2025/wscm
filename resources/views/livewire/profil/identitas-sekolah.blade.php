@@ -1,39 +1,44 @@
     <main id="main">
         <div>
-            <div id="portfolio-details" class="portfolio-details">
-                <div class="portfolio-details-container" data-aos="fade-up" data-aos-delay="100">
-                    <div class="owl-carousel portfolio-details-carousel">
-                        <div class="portfolio-details-carousel">
-                            <div>
-                                <img src="{{ asset('tpl/img/portfolio/portfolio-details-1.jpg') }}" class="img-fluid" alt="">
-                                <div class="portfolio-info">
-                                    <h3>Project information</h3>
-                                    <ul>
-                                        <li><strong>Category</strong>: Web design</li>
-                                        <li><strong>Client</strong>: ASU Company</li>
-                                        <li><strong>Project date</strong>: 01 March, 2020</li>
-                                        <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
-                                    </ul>
+            <section class="services section-bg">
+                <div class="container">
+                    <div id="portfolio-details" class="portfolio-details">
+                        <div class="portfolio-details-container" data-aos="fade-up" data-aos-delay="100">
+                            <div class="owl-carousel portfolio-details-carousel">
+                                <div class="portfolio-details-carousel">
+                                    <div>
+                                        <img src="{{ asset('tpl/img/portfolio/portfolio-details-1.jpg') }}"
+                                            class="img-fluid" alt="">
+                                        <div class="portfolio-info">
+                                            <h3>Project information</h3>
+                                            <ul>
+                                                <li><strong>Category</strong>: Web design</li>
+                                                <li><strong>Client</strong>: ASU Company</li>
+                                                <li><strong>Project date</strong>: 01 March, 2020</li>
+                                                <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="portfolio-details-carousel">
-                            <div>
-                                <img src="{{ asset('tpl/img/portfolio/portfolio-details-2.jpg') }}" class="img-fluid" alt="">
-                                <div class="portfolio-info">
-                                    <h3>ALALALALAA</h3>
-                                    <ul>
-                                        <li><strong>Category</strong>: Web design</li>
-                                        <li><strong>Client</strong>: ASU Company</li>
-                                        <li><strong>Project date</strong>: 01 March, 2020</li>
-                                        <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
-                                    </ul>
+                                <div class="portfolio-details-carousel">
+                                    <div>
+                                        <img src="{{ asset('tpl/img/portfolio/portfolio-details-2.jpg') }}"
+                                            class="img-fluid" alt="">
+                                        <div class="portfolio-info">
+                                            <h3>ALALALALAA</h3>
+                                            <ul>
+                                                <li><strong>Category</strong>: Web design</li>
+                                                <li><strong>Client</strong>: ASU Company</li>
+                                                <li><strong>Project date</strong>: 01 March, 2020</li>
+                                                <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        {{-- <div class="portfolio-details-carousel">
+                                {{-- <div class="portfolio-details-carousel">
                             <div>
-                                <img src="{{ asset('tpl/img/portfolio/portfolio-details-1.jpg') }}" class="img-fluid" alt="">
+                                <img src="{{ asset('tpl/img/portfolio/portfolio-details-1.jpg') }}" class="img-fluid"
+                                alt="">
                                 <div class="portfolio-info">
                                     <h3>Project information</h3>
                                     <ul>
@@ -45,8 +50,10 @@
                                 </div>
                             </div>
                         </div> --}}
-                        {{-- <img src="{{ asset('tpl/img/portfolio/portfolio-details-2.jpg') }}" class="img-fluid" alt="">
-                        <img src="{{ asset('tpl/img/portfolio/portfolio-details-3.jpg') }}" class="img-fluid" alt=""> --}}
+                        {{-- <img src="{{ asset('tpl/img/portfolio/portfolio-details-2.jpg') }}" class="img-fluid"
+                        alt="">
+                        <img src="{{ asset('tpl/img/portfolio/portfolio-details-3.jpg') }}" class="img-fluid" alt="">
+                        --}}
                     </div>
 
                     {{-- <div class="portfolio-info">
@@ -60,9 +67,9 @@
                     </div> --}}
 
                 </div>
-            </div>
+        </div>
 
-            {{-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        {{-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -106,127 +113,136 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div> --}}
-            <!-- </section> -->
+        <!-- </section> -->
 
 
-            <!-- ======= Identitas Sekolah Section ======= -->
-            <section class="services section-bg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            {{-- <div class="section-title">
+        <!-- ======= Identitas Sekolah Section ======= -->
+
+        @auth
+        <div class="row">
+            <div class="col-lg-12">
+                {{-- <div class="section-title">
                                 <h2 class="mt-4">Identitas Sekolah</h2>
                             </div> --}}
-                            <div class="entry-content-page">
-                                @auth
-                                <div class="alert alert-warning mt-4" role="alert">
-                                    <h4 class="alert-heading">Selamat Datang, Admin!</h4>
-                                    <p>
-                                        Agar update berjalan dengan baik, mohon isi data dibawah dengan baik dan benar.
-                                        Terimakasih.
-                                    </p>
-                                    <hr>
-                                    <p class="mb-0">Cek kembali data pada kolom input sebelum melakukan update.</p>
-                                </div>
-
-                                @if (session()->has('msgUpdateIdentitas'))
-                                {{-- <p class="mb-0">{{ session('msgUpdateIdentitas') }}</p> --}}
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <strong>Yay!</strong> {{ session('msgUpdateIdentitas') }}
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                @endif
-
-                                @endauth
-                            </div>
-                        </div>
+                <div class="entry-content-page">
+                    <div class="alert alert-warning mt-4" role="alert">
+                        <h4 class="alert-heading">Selamat Datang, Admin!</h4>
+                        <p>
+                            Agar update berjalan dengan baik, mohon isi data dibawah dengan baik dan benar.
+                            Terimakasih.
+                        </p>
+                        <hr>
+                        <p class="mb-0">Cek kembali data pada kolom input sebelum melakukan update.</p>
                     </div>
-                    {{-- <section class="services section-bg mt-4"> --}}
-                        {{-- <div class="container"> --}}
-                            @foreach ($data as $isi)
-                            {{-- <div class="row"> --}}
-                            {{-- <div class="col-lg-4">
+
+                    @if (session()->has('msgUpdateIdentitas'))
+                    {{-- <p class="mb-0">{{ session('msgUpdateIdentitas') }}</p> --}}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Yay!</strong> {{ session('msgUpdateIdentitas') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+        @endauth
+
+        {{-- @if ($data->count())
+                    @foreach ($data as $isi)
+                    
+                        <h1>NOT</h1>
+                    
+                    @endforeach
+                    @else
+                        <h1>Data Belum Tersedia</h1>
+                    @endif --}}
+
+        {{-- <section class="services section-bg mt-4"> --}}
+        {{-- <div class="container"> --}}
+        @if ($data->count())
+        @foreach ($data as $isi)
+        {{-- <div class="row"> --}}
+        {{-- <div class="col-lg-4">
                                 <div class="section-title" data-aos="fade-right">
                                     <h2>Paket Keahlian</h2>
                                     <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem.</p>
                                 </div>
                             </div> --}}
-                            {{-- <div class="col-lg-8"> --}}
-                            {{-- <div class="row"> --}}
-                            <div class="d-block align-items-stretch">
-                                <div class="icon-box" data-aos="zoom-in" data-aos-delay="100">
-                                    {{-- <div class="icon"><i class="bx bxl-dribbble"></i></div> --}}
-                                    <div class="section-title">
-                                        <h4 class="mt-4"><a style="cursor: context-menu;">Identitas Sekolah</a></h4>
-                                    </div>
-                                    {{-- <h4><a style="cursor: context-menu;">{{ $isi->nama }}</a></h4> --}}
-                                    {{-- <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p> --}}
+        {{-- <div class="col-lg-8"> --}}
+        {{-- <div class="row"> --}}
+        <div class="d-block align-items-stretch">
+            <div class="icon-box" data-aos="zoom-in" data-aos-delay="100">
+                {{-- <div class="icon"><i class="bx bxl-dribbble"></i></div> --}}
+                <div class="section-title">
+                    <h4 class="mt-4"><a style="cursor: context-menu;">Identitas Sekolah</a></h4>
+                </div>
+                {{-- <h4><a style="cursor: context-menu;">{{ $isi->nama }}</a></h4> --}}
+                {{-- <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p> --}}
 
-                                    <ul class="list-group list-group-flush text-left mt-3 pr-5 pl-5 pb-3">
-                                        @php
-                                        $count = 0;
-                                        $co = 0;
-                                        @endphp
-                                        <div class="row">
-                                            {{-- {{ $count = 0 }} --}}
-                                            <div class="col list-group-flush">
-                                                @foreach($judul as $code => $item)
-                                                {{-- @foreach ($data as $isi) --}}
-                                                @if ($count < 5) <li class="list-group-item border-bottom">
-                                                    <p>
-                                                        {{ __($item) }} &ensp; : &ensp; {{ $isi->$code }}
-                                                    </p>
-                                                    </li>
-                                                    @php
-                                                    $count++;
-                                                    @endphp
-                                                    {{-- {{ $count++ }} --}}
-                                                    @endif
-                                                    {{-- @endforeach --}}
-                                                    @endforeach
-                                            </div>
+                <ul class="list-group list-group-flush text-left mt-3 pr-5 pl-5 pb-3">
+                    @php
+                    $count = 0;
+                    $co = 0;
+                    @endphp
+                    <div class="row">
+                        {{-- {{ $count = 0 }} --}}
+                        <div class="col list-group-flush">
+                            @foreach($judul as $code => $item)
+                            {{-- @foreach ($data as $isi) --}}
+                            @if ($count < 5) <li class="list-group-item border-bottom">
+                                <p>
+                                    {{ __($item) }} &ensp; : &ensp; {{ $isi->$code }}
+                                </p>
+                                </li>
+                                @php
+                                $count++;
+                                @endphp
+                                {{-- {{ $count++ }} --}}
+                                @endif
+                                {{-- @endforeach --}}
+                                @endforeach
+                        </div>
 
-                                            {{-- @php
+                        {{-- @php
                                                 $co = 0;                                            
                                             @endphp --}}
-                                            {{-- {{ $co = 0 }} --}}
-                                            <div class="col list-group-flush">
-                                                @foreach($judul as $code => $item)
-                                                {{-- @foreach ($data as $isi) --}}
-                                                @if ($co < 5) @php $co++; @endphp {{-- {{ $co++ }} --}} @else <li
-                                                    class="list-group-item border-bottom">
-                                                    <p>
-                                                        {{ __($item) }} &ensp; : &ensp; {{ $isi->$code }}
-                                                    </p>
-                                                    </li>
-                                                    @php
-                                                    $co++;
-                                                    @endphp
-                                                    {{-- {{ $co++ }} --}}
-                                                    @endif
-                                                    {{-- @endforeach --}}
-                                                    @endforeach
-                                            </div>
-                                        </div>
-                                    </ul>
+                        {{-- {{ $co = 0 }} --}}
+                        <div class="col list-group-flush">
+                            @foreach($judul as $code => $item)
+                            {{-- @foreach ($data as $isi) --}}
+                            @if ($co < 5) @php $co++; @endphp @else <li class="list-group-item border-bottom">
+                                <p>
+                                    {{ __($item) }} &ensp; : &ensp; {{ $isi->$code }}
+                                </p>
+                                </li>
+                                @php
+                                $co++;
+                                @endphp
+                                {{-- {{ $co++ }} --}}
+                                @endif
+                                {{-- @endforeach --}}
+                                @endforeach
+                        </div>
+                    </div>
+                </ul>
 
-                                    @auth
-                                    <div>
-                                        <button type="button" class="btn btn-outline-primary" data-toggle="modal"
-                                            wire:click="loadData({{ $isi->id }})" data-target="#updateIdentitasMDL">
-                                            Update Data
-                                        </button>
-                                        {{-- <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalIdentitas">Edit Data</button> --}}
-                                        {{-- <button type="button" class="btn btn-outline-primary" wire:click="updateIdentitas">Edit
+                @auth
+                <div>
+                    <button type="button" class="btn btn-outline-primary" data-toggle="modal"
+                        wire:click="loadData({{ $isi->id }})" data-target="#updateIdentitasMDL">
+                        Update Data
+                    </button>
+                    {{-- <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalIdentitas">Edit Data</button> --}}
+                    {{-- <button type="button" class="btn btn-outline-primary" wire:click="updateIdentitas">Edit
                                         Data</button> --}}
-                                    </div>
-                                    @endauth
-                                </div>
-                            </div>
+                </div>
+                @endauth
+            </div>
+        </div>
 
-                            {{-- <div class="col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
+        {{-- <div class="col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
                                     <div class="icon-box" data-aos="zoom-in" data-aos-delay="200">
                                       <div class="icon"><i class="bx bx-file"></i></div>
                                       <h4><a href="/agbsnsIkan">Perikanan</a></h4>
@@ -250,20 +266,33 @@
                                     </div>
                                   </div> --}}
 
-                            {{-- </div> --}}
-                            {{-- </div> --}}
+        {{-- </div> --}}
+        {{-- </div> --}}
 
-                            {{-- @auth
+        {{-- @auth
                                 <h1>AUTHORIZE</h1>
                             @else
                                 <h1>NO</h1>
                             @endauth --}}
-                        </div>
-                        @endforeach
-                </div>
-            </section>
-        {{-- </div>
-        </section> --}}
+        </div>
+        @endforeach
+        @else
+        <h1>Data Belum Tersedia</h1>
+        @auth
+        <div>
+            <button type="button" class="btn btn-outline-primary" data-toggle="modal"
+                data-target="#updateIdentitasMDL" data-msg="">
+                Tambah Data
+            </button>
+            {{-- <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalIdentitas">Edit Data</button> --}}
+            {{-- <button type="button" class="btn btn-outline-primary" wire:click="updateIdentitas">Edit
+                                        Data</button> --}}
+        </div>
+        @endauth
+        @endif
+        {{-- </div> --}}
+        {{-- </section> --}}
+
         <!-- End visiMisiTujuan Section -->
         <!-- Modal -->
         <div wire:ignore.self class="modal fade" id="updateIdentitasMDL" data-backdrop="static" data-keyboard="false"
@@ -271,7 +300,14 @@
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Update Identitas Sekolah</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel">
+                            @if ($id_identitas)
+                            Update Identitas Sekolah
+                        @else
+                        Create Identitas Sekolah
+                        @endif
+                            
+                        </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -323,7 +359,11 @@
                     <div class="modal-footer">
                         <input type="hidden" name="id_identitas" wire:model="id_identitas">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        @if ($id_identitas)
                         <button type="button" class="btn btn-primary" wire:click="update">Update</button>
+                        @else
+                        <button type="button" class="btn btn-primary" wire:click="create">Create</button>
+                        @endif
                     </div>
                     </form>
                     {{-- @if ($statusUp == true)
@@ -333,4 +373,9 @@
             </div>
         </div>
         </div>
+        </section>
+        </div>
+        {{-- <script type="text/javascript">
+
+        </script> --}}
     </main>
