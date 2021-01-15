@@ -13,7 +13,7 @@
     <section id="counts" class="counts">
         <div class="container">
         <!-- <h3 style = "padding-left :415px; margin-top:-60; margin-bottom :80px; padding-top: 90px;">Jumlah Peserta Didik</h3> -->
-        <h2 style = "padding-left :380px; margin-top:-75; margin-bottom :50px;">SMK Negeri 1 Grujugan</h2>
+        <h2 id="header-count">SMK Negeri 1 Grujugan</h2>
             <div class="row counters">
 
                 <div class="col-lg-3 col-6 text-center">

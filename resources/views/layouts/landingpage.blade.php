@@ -80,8 +80,8 @@
                     </li>
                     <li class="drop-down"><a style="cursor: context-menu;">Paket Keahlian</a>
                         <ul>
-                            <li><a href="{{ url('/pktKeahlian/agbsnsTani') }}">Agribisnis Pengolahan Hasil Pertanian</a></li>
-                            <li><a href="{{ url('/pktKeahlian/agsbnsIkan') }}">Agribisnis Pengolahan Hasil Perikanan</a></li>
+                            <li><a href="{{ url('/paketKeahlian/agbsnsTani') }}">Agribisnis Pengolahan Hasil Pertanian</a></li>
+                            <li><a href="{{ url('/paketKeahlian/agbsnsIkan') }}">Agribisnis Pengolahan Hasil Perikanan</a></li>
                         </ul>
                     </li>
                     <li class="drop-down"><a style="cursor: context-menu;">BKK</a>
@@ -99,7 +99,7 @@
                             <li><a href="{{ url('/kurikulum/klndrPmbljaran') }}">Kalender Pembelajaran</a></li>
                             <li><a href="{{ url('/kurikulum/pmbljaran') }}">Pembelajaran</a></li>
                             <li><a href="{{ url('/kurikulum/penilaian') }}">Penilaian</a></li>
-                            <li><a href="{{ url('/kurikulum/srtfkasi') }}">Sertifikasi</a></li>
+                            <li><a href="{{ url('/kurikulum/akreditasi') }}">Akreditasi</a></li>
                         </ul>
                     </li>
                     <li class="drop-down"><a style="cursor: context-menu;">Humas</a>
@@ -117,7 +117,7 @@
                             <li><a href="{{ url('/kesiswaan/prgrmkrjSis') }}">Program Kerja (Kesiswaan)</a></li>
                             <li><a href="{{ url('/kesiswaan/ekskul') }}">Ekstrakurikuler</a></li>
                             <li><a href="{{ url('/kesiswaan/kegOsis') }}">Kegiatan OSIS</a></li>
-                            <li><a href="{{ url('/kesiswaan/kegPram') }}">Kegiatan Pramuka</a></li>
+                            <li><a href="{{ url('/kesiswaan/kegPramuka') }}">Kegiatan Pramuka</a></li>
                             <li><a href="{{ url('/kesiswaan/prestasi') }}">Prestasi</a></li>
                         </ul>
                     </li>
@@ -126,7 +126,7 @@
                             <li><a href="{{ url('/sarpras/tntgSarpras') }}">Tentang (SarPras)</a></li>
                             <li><a href="{{ url('/sarpras/orgnssSarpras') }}">Organisasi (SarPras)</a></li>
                             <li><a href="{{ url('/sarpras/prgrmkrjSarpras') }}">Program Kerja (SarPras)</a></li>
-                            <li><a href="{{ url('/sarpras/fasSek') }}">Fasilitas Sekolah</a></li>
+                            <li><a href="{{ url('/sarpras/fasSekolah') }}">Fasilitas Sekolah</a></li>
                         </ul>
                     </li>
                     <li class="drop-down"><a style="cursor: context-menu;">Perpustakaan</a>
@@ -135,7 +135,7 @@
                             <li><a href="{{ url('/perpus/orgnssPerpus') }}">Organisasi (Perpustakaan)</a></li>
                         </ul>
                     </li>
-                    <li><a href="{{ url('/inform') }}">Informasi</a></li>
+                    <li><a href="{{ url('/informasi') }}">Informasi</a></li>
                     
                     <li><a href="{{ url('/ppdb') }}">PPDB</a></li>
                     
@@ -171,12 +171,11 @@
         @stack('modals')
 
         <!-- ======= Footer ======= -->
+        
         <footer id="footer">
-
             <div class="footer-top">
                 <div class="container">
                     <div class="row">
-
                         <div class="col-lg-5 col-md-6 footer-contact">
                             <h3>SMK NEGERI 1 GRUJUGAN</h3>
                             <p>
