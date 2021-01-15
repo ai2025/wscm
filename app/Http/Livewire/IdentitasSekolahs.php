@@ -60,6 +60,15 @@ class IdentitasSekolahs extends Component
         ];
     }
 
+    public function create()
+    {
+        $this->validate();
+        IdentitasSekolah::create($this->modelData());
+        $this->reset();
+        return redirect()->to('/profil/identitasSekolah');
+        session()->flash('msgUpdateIdentitas', 'Identitas Sekolah successfully added.');
+    }
+
     public function read()
     {
         return IdentitasSekolah::orderBy('created_at', 'DESC')->get();

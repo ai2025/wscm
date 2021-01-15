@@ -14,8 +14,8 @@ class IdentitasSekolah extends Model
         'nama', 'nis', 'alamat', 'kab', 'provinsi', 'negara', 'email', 'web', 'telp', 'pos',
     ];
 
-    public function getAllData()
-    {
-        return DB::table('identitas_sekolahs')->get();
-    }
+    // public function getAllData()
+    // {
+    //     return DB::table('identitas_sekolahs')->get();
+    // }
 }
