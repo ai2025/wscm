@@ -24,6 +24,7 @@ a:hover {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Raleway", sans-serif;
+  
 }
 
 /*--------------------------------------------------------------
@@ -62,6 +63,7 @@ h1, h2, h3, h4, h5, h6 {
   [data-aos-delay] {
     transition-delay: 0 !important;
   }
+  
 }
 
 /*--------------------------------------------------------------
@@ -114,14 +116,45 @@ h1, h2, h3, h4, h5, h6 {
   #header {
     box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
     top: 0;
-    background: #009970;
+    background: rgb(58, 141, 60);
   }
   #header.header-scrolled, #header .header-container {
-    background: #009970;
+    background: rgb(58, 141, 60);
   }
-  #header .logo h1 {
-    font-size: 24px;
+  #header .logo img{
+    /* margin : 0 0 120px 0; */
+    /* font-size: 24px; */
+    max-height: 50px;
+    display: none;
   }
+  #header-count{
+    padding: 80px;
+    margin: 0;
+    /* padding-left :380px;
+    margin-top:-75; 
+    margin-bottom :50px; */
+  }
+  #header-BKK{
+    top: 140px; 
+    width: 500px;
+  }
+  #isi{
+    padding-top: 120px;
+  }
+  /* #konten{
+    padding-top: 120px;
+    padding:0px;
+    width:100%;
+    float:left;
+    font-size:11pt;
+    margin:5px;
+    border-right:1px solid #bababa;
+    border-bottom:1px solid #bababa;
+    border-top:1px solid #bababa;
+    border-left:1px solid #bababa;
+    border-radius: 10px;
+} */
+  
 }
 
 /*--------------------------------------------------------------
@@ -250,7 +283,7 @@ h1, h2, h3, h4, h5, h6 {
 .mobile-nav-toggle {
   position: fixed;
   right: 15px;
-  top: 15px;
+  top: 20px;
   z-index: 9998;
   border: 0;
   background: none;
@@ -459,6 +492,8 @@ h1, h2, h3, h4, h5, h6 {
 section {
   padding: 60px 0;
   overflow: hidden;
+  min-height: auto;
+  max-height: auto;
 }
 
 .section-bg {
@@ -491,6 +526,17 @@ section {
 
 .section-title p {
   margin-bottom: 0;
+}
+
+/*--------------------------------------------------------------
+# Input Data Alumni
+--------------------------------------------------------------*/
+#isi-Alumni{
+  padding-top: 130px;
+  width: 500px;
+}
+#form{
+  padding-top: 110px;
 }
 
 /*--------------------------------------------------------------
@@ -531,7 +577,7 @@ section {
 .about .content h3 {
   font-weight: 500;
   line-height: 32px;
-  font-size: 24px;
+  font-size: 8vw;
 }
 
 .about .content ul {
@@ -554,13 +600,15 @@ section {
 
 .about .content p:last-child {
   margin-bottom: 0;
+  
 }
 
 /*--------------------------------------------------------------
 # Counts
 --------------------------------------------------------------*/
 .counts {
-  background: #009970;
+  background: rgb(58, 141, 60);
+  /* background: #009970; */
   padding: 40px 0 20px 0;
   color: #fff;
 }
@@ -749,6 +797,8 @@ section {
 /*--------------------------------------------------------------
 # Portfolio
 --------------------------------------------------------------*/
+
+
 .portfolio .portfolio-item {
   margin-bottom: 30px;
 }
@@ -952,15 +1002,25 @@ section {
 /*--------------------------------------------------------------
 # Team
 --------------------------------------------------------------*/
+.team .section-title{
+  padding-top: 30px;
+}
 .team {
   background: #fff;
 }
 
+#isi-team{
+  padding-top: 20px;
+}
+
+/* ngatur card */
 .team .member {
   position: relative;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-  border-radius: 10px;
+  padding: 20px;
+  /* top:140px; */
+  margin-top: 20px;
+  border-radius: 50px;
   text-align: center;
 }
 
@@ -1044,8 +1104,22 @@ section {
 }
 
 /*--------------------------------------------------------------
+# PKL
+--------------------------------------------------------------*/
+#uk-table{
+  width: 800%;
+}
+
+/*--------------------------------------------------------------
 # Contact
 --------------------------------------------------------------*/
+#isi-kontak{
+  padding-top: 130px;
+}
+#peta{
+  padding-top: 130px;
+}
+
 .contact .info {
   padding: 30px;
   width: 100%;
@@ -1095,6 +1169,13 @@ section {
 
 .contact .php-email-form .validate {
   display: none;
+  color: red;
+  margin: 0 0 15px 0;
+  font-weight: 400;
+  font-size: 13px;
+}
+
+#error-msg {
   color: red;
   margin: 0 0 15px 0;
   font-weight: 400;
@@ -1326,6 +1407,7 @@ section {
   color: #444444;
   font-size: 14px;
   background: #f1f0f2;
+  
 }
 
 #footer .footer-top {
