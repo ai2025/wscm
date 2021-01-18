@@ -1,13 +1,12 @@
 <meta charset="UTF-8">
+@foreach ($data as $data)
         <meta name="viewport" content="width=device-width, initial-scale=1">
-<section id="hero" class="d-flex align-items-center" style="height : 500px;">
-    <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200" style="
-    height: 200px;">
-        <h1>SMK NEGERI 1 GRUJUGAN</h1>
-        <h2>(JARGONNYA BIAR MANTAP)</h2>
-        <a href="#" class="btn-get-started scrollto">Get Started</a>
-    </div>
-</section>
+            <section id="hero" class="d-flex align-items-center">
+                <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200">
+            <h1>{{ $data->nama }}</h1>
+            {{-- <a href="#" class="btn-get-started scrollto">Get Started</a> --}}
+        </div>
+    </section>
 <main id="main">
     <!-- ======= Team Section ======= -->
     <section id="orgnssSarpras" class="team section-bg">
@@ -56,7 +55,7 @@
                                 </div>
                             </div>
     
-                            <div class="col-lg-6 mt-8">
+                            <div class="col-lg-6 mt-4">
                                 <div class="member" data-aos="zoom-in" data-aos-delay="300">
                                     <div class="pic"><img src="/tpl/img/team/team-3.jpg" class="img-fluid" alt=""></div>
                                     <div class="member-info">
@@ -73,7 +72,7 @@
                                 </div>
                             </div>
     
-                            <div class="col-lg-6 mt-8">
+                            <div class="col-lg-6 mt-4">
                                 <div class="member" data-aos="zoom-in" data-aos-delay="400">
                                     <div class="pic"><img src="/tpl/img/team/team-4.jpg" class="img-fluid" alt=""></div>
                                     <div class="member-info">
@@ -98,5 +97,5 @@
             </div>
         </section>
         <!-- End Team Section -->
-        
+        @endforeach
     </main>

@@ -2,14 +2,37 @@
 
 namespace App\Http\Livewire;
 use App\Models\IdentitasSekolah;
+use App\Models\JmlhPsrtDidik;
 use Livewire\Component;
 
 class Landingpage extends Component
 {
     public $modalIdentitas = false;
+    public $modalLanding = false;
 
-    public $nama, $nis, $alamat, $kab, $provinsi, $negara, $email, $web, $telp, $pos, $id_identitas;
+    public $nama, $nis, $alamat, $kab, $provinsi, $negara, $email, $web, $telp, $pos, $id_identitas, 
+    $jmlhSis, $guru, $kelas, $jurusan, $id_jmlh;
 
+    public $judul = [
+        'nama' => 'Nama Sekolah',
+        'nis' => 'NIS',
+        'alamat' => 'Alamat',
+        'kab' => 'Kabupaten',
+        'provinsi' => 'Provinsi',
+        'negara' => 'Negara',
+        'email' => 'Email',
+        'web' => 'Website',
+        'telp' => 'Telepon',
+        'pos' => 'Kode POS',
+    ];
+    
+    public $judulJmlh = [
+        'jmlhSis' => 'Jumlah Siswa',
+        'guru' => 'Guru',
+        'kelas' => 'Kelas',
+        'jurusan' => 'Jurusan',
+    ];
+    
     public function rules()
     {
         return [
@@ -24,6 +47,96 @@ class Landingpage extends Component
             'telp' => ['required', 'min:5', 'numeric'],
             'pos' => ['required', 'min:4', 'numeric'],
         ];
+    }
+
+    // public function rulesJmlh()
+    // {
+    //     return [
+    //         'jmlhSis' => ['required', 'numeric'],
+    //         'guru' => ['required', 'numeric'],
+    //         'kelas' => ['required', 'numeric'],
+    //         'jurusan' => ['required', 'numeric'],
+    //     ];
+    // }
+
+    public function createJmlh()
+    {
+        // $this->validate();
+        $validatedData = $this->validate([
+            'jmlhSis' => ['required', 'numeric'],
+            'guru' => ['required', 'numeric'],
+            'kelas' => ['required', 'numeric'],
+            'jurusan' => ['required', 'numeric'],
+        ]);
+        // $validatedData['name']=$this->modelDataJmlh();
+        JmlhPsrtDidik::create($validatedData);
+        session()->flash('msgUpdateJumlah', 'Jumlah successfully added.');
+        return redirect()->to('/');
+        // JmlhPsrtDidik::createJmlh($this->modelDataJmlh());
+        // $this->reset();
+        // session()->flash('msgUpdateJumlah', 'Jumlah successfully added.');
+        // return redirect()->to('/');
+    }
+
+    public function read()
+    {
+        return IdentitasSekolah::orderBy('created_at', 'DESC')->get();
+    }
+    
+    public function readJmlh()
+    {
+        return JmlhPsrtDidik::orderBy('created_at', 'DESC')->get();
+        // $this->resetPage();
+    }
+
+    public function updateJmlh()
+    {
+        $validatedData = $this->validate([
+            'jmlhSis' => ['required', 'numeric'],
+            'guru' => ['required', 'numeric'],
+            'kelas' => ['required', 'numeric'],
+            'jurusan' => ['required', 'numeric'],
+        ]);
+        // JmlhPsrtDidik::updated($validatedData);
+        JmlhPsrtDidik::find($this->id_jmlh)->update($this->modelDataJmlh());
+        session()->flash('msgUpdateJumlah', 'Jumlah successfully updated.');
+        return redirect()->to('/');
+        // $this->validate();
+        // JmlhPsrtDidik::find($this->id_jmlh)->updateJmlh($this->modelDataJmlh());
+        // session()->flash('msgUpdateJumlah', 'Jumlah successfully updated.');
+        // return redirect()->to('/');
+    }
+
+    /**
+     * show Edit Identitas Modal
+     *
+     * @return void
+     */
+
+    public function loadData($id)
+    {
+        $this->id_identitas = $id;
+        $data = IdentitasSekolah::find($id)->first();
+        $this->nama = $data->nama;
+        $this->nis = $data->nis;
+        $this->alamat = $data->alamat;
+        $this->kab = $data->kab;
+        $this->provinsi = $data->provinsi;
+        $this->negara = $data->negara;
+        $this->email = $data->email;
+        $this->web = $data->web;
+        $this->telp = $data->telp;
+        $this->pos = $data->pos;
+    }
+    
+    public function loadDataJmlh($idj)
+    {
+        $this->id_jmlh = $idj;
+        $dataa = JmlhPsrtDidik::find($idj)->first();
+        $this->jmlhSis = $dataa->jmlhSis;
+        $this->guru = $dataa->guru;
+        $this->kelas = $dataa->kelas;
+        $this->jurusan = $dataa->jurusan;
     }
 
     /**
@@ -48,46 +161,15 @@ class Landingpage extends Component
         ];
     }
 
-    public function read()
+    public function modelDataJmlh()
     {
-        return IdentitasSekolah::orderBy('created_at', 'DESC')->get();
-        // $this->resetPage();
+        return [
+            'jmlhSis' => $this->jmlhSis,
+            'guru' => $this->guru,
+            'kelas' => $this->kelas,
+            'jurusan' => $this->jurusan,
+        ];
     }
-
-    /**
-     * show Edit Identitas Modal
-     *
-     * @return void
-     */
-
-    public function loadData($id)
-    {
-        $this->id_identitas = $id;
-        $data = IdentitasSekolah::find($id)->first();
-        $this->nama = $data->nama;
-        $this->nis = $data->nis;
-        $this->alamat = $data->alamat;
-        $this->kab = $data->kab;
-        $this->provinsi = $data->provinsi;
-        $this->negara = $data->negara;
-        $this->email = $data->email;
-        $this->web = $data->web;
-        $this->telp = $data->telp;
-        $this->pos = $data->pos;
-    }
-
-    public $judul = [
-        'nama' => 'Nama Sekolah',
-        'nis' => 'NIS',
-        'alamat' => 'Alamat',
-        'kab' => 'Kabupaten',
-        'provinsi' => 'Provinsi',
-        'negara' => 'Negara',
-        'email' => 'Email',
-        'web' => 'Website',
-        'telp' => 'Telepon',
-        'pos' => 'Kode POS',
-    ];
 
     /**
      * viewnya
@@ -99,8 +181,9 @@ class Landingpage extends Component
     {
         return view('livewire.landingpage' , [
             'data'=> $this->read(),
-         ])->layout('layouts.landingpage', [
+            'dataa'=> $this->readJmlh(),
+        ])->layout('layouts.landingpage', [
             'data'=> $this->read(),
-         ]);
+        ]);
     }
 }

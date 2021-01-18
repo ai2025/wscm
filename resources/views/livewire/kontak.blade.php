@@ -1,4 +1,5 @@
 <main id="main">
+    @foreach ($data as $data)
     <section id="kontak" class="contact">
     <div class="container">
         <div class="row">
@@ -15,7 +16,7 @@
                         <div class="info mt-4">
                             <i class="icofont-google-map"></i>
                             <h4>Lokasi:</h4>
-                            <p>Congkrong Barat, Taman, Grujugan, Kabupaten Bondowoso, Jawa Timur 68261</p>
+                            <p>{{ $data->alamat }}, {{ $data->kab }}, {{ $data->provinsi }} {{ $data->pos }}</p>
                         </div>
                 </div>
                 <div class="row">
@@ -23,21 +24,20 @@
                         <div class="info">
                             <i class="icofont-envelope"></i>
                             <h4>Email:</h4>
-                            <p>smkn1_grujugan@yahoo.com</p>
+                            <p>{{ $data->email }}</p>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="info w-100 mt-4">
                             <i class="icofont-phone"></i>
                             <h4>Call:</h4>
-                            <p>(0332) 431110</p>
+                            <p>{{ $data->telp }}</p>
                         </div>
                     </div>
                 </div>
-            
             </div>
         </div>
-
     </div>
 </section>
+@endforeach
 </main>

@@ -63,7 +63,6 @@ h1, h2, h3, h4, h5, h6 {
   [data-aos-delay] {
     transition-delay: 0 !important;
   }
-  
 }
 
 /*--------------------------------------------------------------
@@ -409,6 +408,7 @@ h1, h2, h3, h4, h5, h6 {
 --------------------------------------------------------------*/
 #hero {
   width: 100%;
+  /* height: auto; */
   height: 80vh;
   background: url("../img/hero-bg.jpg") center center;
   background-size: cover;
@@ -532,12 +532,12 @@ section {
 # Input Data Alumni
 --------------------------------------------------------------*/
 #isi-Alumni{
-  padding-top: 130px;
+  /* padding-top: 130px; */
   width: 500px;
 }
-#form{
+/* #form{
   padding-top: 110px;
-}
+} */
 
 /*--------------------------------------------------------------
 # Clients
@@ -606,6 +606,7 @@ section {
 /*--------------------------------------------------------------
 # Counts
 --------------------------------------------------------------*/
+
 .counts {
   background: rgb(58, 141, 60);
   /* background: #009970; */
@@ -1009,9 +1010,9 @@ section {
   background: #fff;
 }
 
-#isi-team{
-  padding-top: 20px;
-}
+/* #isi-team{
+  padding-top: 50px;
+} */
 
 /* ngatur card */
 .team .member {

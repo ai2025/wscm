@@ -1,3 +1,4 @@
+@foreach ($data as $data)
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -47,7 +48,7 @@
         <div class="section-title" data-aos="fade-left">
             <h2>PKL</h2>
         </div>
-                    
+                    {{-- TABEL --}}
                 {{-- <div id="uk-tabel"> --}}
                     <div class="entry-content-page">
                             <div class="table-responsive">
@@ -55,7 +56,7 @@
                                     <thead>
                                         <tr>
                                             <th width="40px">No.</th>
-                                            <th width="300px">Nama</th>
+                                            <th width="300px">Paket Keahlian</th>
                                             <th width="300px">Nama Institusi</th>
                                             <th width="400px">Alamat</th>
                                             <th width="200px">Jumlah Siswa</th>
@@ -84,4 +85,4 @@
 </section>
 <!-- End visiMisiTujuan Section -->
 </main>
-<!-- End #main -->
+@endforeach
