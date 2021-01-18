@@ -5,17 +5,21 @@ namespace App\Http\Livewire;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use App\Models\IdentitasSekolah;
-// use Livewire\WithPagination;
+use App\Models\ImgCarIdenSekolah;
+use Livewire\WithFileUploads;
+use Livewire\WithPagination;
 
 class IdentitasSekolahs extends Component
 {
 
-    // use WithPagination;
+    use WithPagination;
+    use WithFileUploads;
 
     public $modalIdentitas = false;
 
     public $nama, $nis, $alamat, $kab, $provinsi, $negara, $email, $web, $telp, $pos, $id_identitas;
-    // public $ids;
+    public $is_showing, $imgIdent, $keterangan, $id_img, $tempImg;
+    // public $switchRule = 0;
     // public $statusUp = false;
 
     public $judul = [
@@ -58,21 +62,51 @@ class IdentitasSekolahs extends Component
             'telp' => ['required', 'min:5', 'numeric'],
             'pos' => ['required', 'min:4', 'numeric'],
         ];
+        // if ($switchRule == 0) {
+
+        // } else if($switchRule == 1) {
+        //     return [
+        //         'keterangan' => ['required', 'min:3'],
+        //         'imgIden' => ['required', 'image:url:image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+        //     ]
+        // }
     }
 
     public function create()
     {
+        // $switchRule = 0;
         $this->validate();
         IdentitasSekolah::create($this->modelData());
         $this->reset();
-        return redirect()->to('/profil/identitasSekolah');
+        $this->reloadPage();
         session()->flash('msgUpdateIdentitas', 'Identitas Sekolah successfully added.');
+    }
+
+    public function createImgIden()
+    {
+        // $switchRule = 1;
+        $valData = $this->validate([
+            'imgIdent' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'keterangan' => 'required|min:3|max:50',
+        ]);
+
+        $valData['imgIden'] = $this->imgIdent->store('img_car_iden_sekolahs', 'public');
+        $valData['is_showing'] = $this->is_showing;
+
+        ImgCarIdenSekolah::create($valData);
+        $this->reloadPage();
+        session()->flash('msgUpdateIdentitas', 'GAMBAR successfully added.');
     }
 
     public function read()
     {
-        return IdentitasSekolah::orderBy('created_at', 'DESC')->get();
+        return IdentitasSekolah::select('*')->get();
         // $this->resetPage();
+    }
+
+    public function readImg()
+    {
+        return ImgCarIdenSekolah::select('*')->get();
     }
 
     public function update()
@@ -81,9 +115,44 @@ class IdentitasSekolahs extends Component
         // dd($this->id_identitas);
         IdentitasSekolah::find($this->id_identitas)->update($this->modelData());
         session()->flash('msgUpdateIdentitas', 'Identitas Sekolah successfully updated.');
-        return redirect()->to('/profil/identitasSekolah');
+        $this->reloadPage();
         // $statusUp = true;
         // $this->statusUpdate();
+    }
+
+    public function updateImg()
+    {
+        $valData = '';
+        // $tempImg = $this->imgIdent;
+        if ($this->tempImg != null) {
+            // dd("not null");
+            $valData = $this->validate([
+                'tempImg' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'keterangan' => 'required|min:3|max:50',
+            ]);
+
+            $valData['imgIden'] = $this->tempImg->store('img_car_iden_sekolahs', 'public');
+            unlink('storage/' . $this->imgIdent);
+        } else {
+            // dd("null");
+            $valData = $this->validate([
+                'keterangan' => 'required|min:3|max:50',
+            ]);
+        }
+
+        // dd($valData);
+        $valData['is_showing'] = $this->is_showing;
+        ImgCarIdenSekolah::find($this->id_img)->update($valData);
+        $this->reloadPage();
+        session()->flash('msgUpdateIdentitas', 'GAMBAR successfully added.');
+    }
+
+    public function deleteImg()
+    {
+        // dd($this->id_img);
+        unlink('storage/' . $this->imgIdent);
+        ImgCarIdenSekolah::destroy($this->id_img);
+        $this->reloadPage();
     }
 
     // public function statusUpdate()
@@ -119,10 +188,35 @@ class IdentitasSekolahs extends Component
     //     $this->modalIdentitas = true;
     // }
 
+    public function reloadPage()
+    {
+        return redirect()->to('/profil/identitasSekolah');
+    }
+
+    public function loadDataImg($id)
+    {
+        $this->id_img = $id;
+        $dim = ImgCarIdenSekolah::find($this->id_img);
+        // $this->sequence = $dim->sequence;
+        $this->is_showing = $dim->is_showing;
+        $this->imgIdent = $dim->imgIden;
+        $this->keterangan = $dim->keterangan;
+    }
+
+    public function loadDataImgUp($id)
+    {
+        $this->id_img = $id;
+        $dim = ImgCarIdenSekolah::find($this->id_img);
+        // $this->sequence = $dim->sequence;
+        $this->is_showing = $dim->is_showing;
+        // $this->imgIdent = $dim->imgIden;
+        $this->keterangan = $dim->keterangan;
+    }
+
     public function loadData($id)
     {
         $this->id_identitas = $id;
-        $data = IdentitasSekolah::find($id)->first();
+        $data = IdentitasSekolah::find($this->id_identitas);
         $this->nama = $data->nama;
         $this->nis = $data->nis;
         $this->alamat = $data->alamat;
@@ -156,6 +250,16 @@ class IdentitasSekolahs extends Component
         ];
     }
 
+    public function modelDataImg()
+    {
+        return [
+            // 'sequence' => $this->sequence,
+            'is_showing' => $this->is_showing,
+            'imgIden' => $this->imgIdent,
+            'keterangan' => $this->keterangan,
+        ];
+    }
+
     /**
      * viewnya
      *
@@ -165,7 +269,11 @@ class IdentitasSekolahs extends Component
     {
         return view('livewire.profil.identitas-sekolah', [
             'data' => $this->read(),
+            'dataImg' => $this->readImg(),
             // 'statusUp' => $this->statusUpdate(),
-        ])->layout('layouts.landingpage');
+        ])->layout('layouts.landingpage', [
+            'data' => $this->read(),
+            // 'statusUp' => $this->statusUpdate(),
+        ]);
     }
 }
