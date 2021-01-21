@@ -3,45 +3,45 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Illuminate\Validation\Rule;
 use App\Models\IdentitasSekolah;
 use App\Models\DataAlumni;
 
 class InputDataAlumni extends Component
 {
-    public $nama, $nis, $alamat, $kab, $provinsi, $negara, $email, $web, $telp, $pos, $id_identitas,
-    $namaAlumni, $nisAlumni, $tmptLahir, $tglLahir, $telpAlumni, $emailAlumni, $gender, 
-    $jurusanAlumni, $thnLulus, $pkl, 
-    $pengalamanKrj, $statusPkrjaan, $tmptKerKul, $id_alumni;
+    public $namaAlumni, $nisAlumni, $tmptLahir, $tglLahir, $telpAlumni, $emailAlumni, $gender;
+    public $jurusanAlumni, $thnLulus, $pkl, $pengalamanKrj, $statusPkrjaan, $tmptKerKul, $id_alumni;
+    // public $dat = [];
 
-    public $judulAlumni = [
-        'namaAlumni' => 'Nama Alumni',
-        'nisAlumni' => 'NIS',
-        'tmptLahir' => 'Tempat Lahir',
-        'tglLahir' => 'Tanggal Lahir',
-        'telpAlumni' => 'No.HP Alumni',
-        'emailAlumni' => 'Email Alumni',
-        'gender' => 'Gender',
-        'jurusanAlumni' => 'Paket Keahlian',
-        'thnLulus' => 'Tahun Lulus',
-        'pkl' => 'PKL',
-        'pengalamanKrj' => 'Pengalaman Kerja',
-        'statusPkrjaan' => 'Status Pekerjaan',
-        'tmptKerKul' => 'Tempat Kerja /  Kuliah',
-    ];
+    // public $judulAlumni = [
+    //     'namaAlumni' => 'Nama Alumni',
+    //     'nisAlumni' => 'NIS',
+    //     'tmptLahir' => 'Tempat Lahir',
+    //     'tglLahir' => 'Tanggal Lahir',
+    //     'telpAlumni' => 'No.HP Alumni',
+    //     'emailAlumni' => 'Email Alumni',
+    //     'gender' => 'Gender',
+    //     'jurusanAlumni' => 'Paket Keahlian',
+    //     'thnLulus' => 'Tahun Lulus',
+    //     'pkl' => 'PKL',
+    //     'pengalamanKrj' => 'Pengalaman Kerja',
+    //     'statusPkrjaan' => 'Status Pekerjaan',
+    //     'tmptKerKul' => 'Tempat Kerja /  Kuliah',
+    // ];
 
     public function rules()
     {
-        return 
+        return
             [
                 'namaAlumni' => 'required',
-                'nisAlumni' => 'required|numeric',
+                'nisAlumni' => ['required', 'numeric', Rule::unique('data_alumnis', 'nisAlumni')],
                 'tmptLahir' => 'required',
                 'tglLahir' => 'required',
-                'telpAlumni' => 'required| numeric',
-                'emailAlumni' => 'required|email',
+                'telpAlumni' => ['required', 'numeric', Rule::unique('data_alumnis', 'telpAlumni')],
+                'emailAlumni' => ['required', 'email', Rule::unique('data_alumnis', 'emailAlumni')],
                 'gender' => 'required',
                 'jurusanAlumni' => 'required',
-                'thnLulus' => 'required|numeric',
+                'thnLulus' => ['required', 'numeric'],
                 'pkl' => 'required',
                 'pengalamanKrj' => 'required',
                 'statusPkrjaan' => 'required',
@@ -52,31 +52,47 @@ class InputDataAlumni extends Component
 
     public function read()
     {
-        return IdentitasSekolah::orderBy('created_at', 'DESC')->get();
+        return IdentitasSekolah::select('*')->get();
     }
 
     public function readAlumni()
     {
-        return DataAlumni::orderBy('created_at', 'DESC')->get();
+        return DataAlumni::select('*')->get();
+    }
+
+    public function simpan()
+    {
+        // dd($this->modelDataAlumni());
+        $this->validate();
+        DataAlumni::create($this->modelDataAlumni());
+        $this->reset();
+        session()->flash('msgAlumni', 'Data Alumni berhasil ditambahkan.');
+        return redirect()->to('/bkk/inputDataAlumni');
     }
 
     public function loadDataAlumni($ida)
     {
         $this->id_alumni = $ida;
-        $dataa = IdentitasSekolah::find($ida)->first();
-        $this->namaAlumni = $dataa->namaAlumni;
-        $this->nisAlumni = $dataa->nisAlumni;
-        $this->tmptLahir = $dataa->tmptLahir;
-        $this->tglLahir = $dataa->tglLahir;
-        $this->telpAlumni = $dataa->telpAlumni;
-        $this->emailAlumni = $dataa->emailAlumni;
-        $this->gender = $dataa->gender;
-        $this->jurusanAlumni = $dataa->jurusanAlumni;
-        $this->thnLulus = $dataa->thnLulus;
-        $this->pkl = $dataa->pkl;
-        $this->pengalamanKrj = $dataa->pengalamanKrj;
-        $this->statusPkrjaan = $dataa->statusPkrjaan;
-        $this->tmptKerKul = $dataa->tmptKerKul;
+        $dat = DataAlumni::find($ida);
+        // dd($dget["namaAlumni"]);
+        $this->namaAlumni = $dat->namaAlumni;
+        $this->nisAlumni = $dat->nisAlumni;
+        $this->tmptLahir = $dat->tmptLahir;
+        $this->tglLahir = $dat->tglLahir;
+        $this->telpAlumni = $dat->telpAlumni;
+        $this->emailAlumni = $dat->emailAlumni;
+        $this->gender = $dat->gender;
+        $this->jurusanAlumni = $dat->jurusanAlumni;
+        $this->thnLulus = $dat->thnLulus;
+        $this->pkl = $dat->pkl;
+        $this->pengalamanKrj = $dat->pengalamanKrj;
+        $this->statusPkrjaan = $dat->statusPkrjaan;
+        $this->tmptKerKul = $dat->tmptKerKul;
+        // $dat = [
+        //     $this->namaAlumni, $this->nisAlumni, $this->tmptLahir, $this->tglLahir, $this->telpAlumni,
+        //     $this->emailAlumni, $this->gender, $this->jurusanAlumni, $this->thnLulus, $this->pkl,
+        //     $this->pengalamanKrj, $this->statusPkrjaan, $this->tmptKerKul
+        // ];
     }
 
     public function modelDataAlumni()
@@ -98,14 +114,7 @@ class InputDataAlumni extends Component
         ];
     }
 
-    public function simpan(){
-        // dd($this->modelDataAlumni());
-        $this->validate();
-        DataAlumni::create($this->modelDataAlumni());
-        $this->reset();
-        // session()->flash('msgUpdateAlumni', 'Data Alumni successfully added.');
-        return redirect()->to('/');
-    }
+
 
     // public function store()
     // {
@@ -125,22 +134,22 @@ class InputDataAlumni extends Component
     //     $alumni->tmptKerKul=$this->tmptKerKul;
     //     $alumni->save();
     //     return redirect()->to('/');
-        // DataAlumni::create([
-        //     'namaAlumni' => $this->namaAlumni,
-        //     'nisAlumni' => $this->nisAlumni,
-        //     'tmptLahir' => $this->tmptLahir,
-        //     'tglLahir' => $this->tglLahir,
-        //     'telpAlumni' => $this->telpAlumni,
-        //     'emailAlumni' => $this->emailAlumni,
-        //     'gender' => $this->gender,
-        //     'jurusanAlumni' => $this->jurusanAlumni,
-        //     'thnLulus' => $this->thnLulus,
-        //     'pkl' => $this->pkl,
-        //     'pengalamanKrj' => $this->pengalamanKrj,
-        //     'statusPkrjaan' => $this->statusPkrjaan,
-        //     'tmptKerKul' => $this->tmptKerKul,
-        // ]);
-        // $this->resetInput();
+    // DataAlumni::create([
+    //     'namaAlumni' => $this->namaAlumni,
+    //     'nisAlumni' => $this->nisAlumni,
+    //     'tmptLahir' => $this->tmptLahir,
+    //     'tglLahir' => $this->tglLahir,
+    //     'telpAlumni' => $this->telpAlumni,
+    //     'emailAlumni' => $this->emailAlumni,
+    //     'gender' => $this->gender,
+    //     'jurusanAlumni' => $this->jurusanAlumni,
+    //     'thnLulus' => $this->thnLulus,
+    //     'pkl' => $this->pkl,
+    //     'pengalamanKrj' => $this->pengalamanKrj,
+    //     'statusPkrjaan' => $this->statusPkrjaan,
+    //     'tmptKerKul' => $this->tmptKerKul,
+    // ]);
+    // $this->resetInput();
     // }
 
     // private function resetInput()
@@ -163,10 +172,10 @@ class InputDataAlumni extends Component
     public function render()
     {
         return view('livewire.bkk.input-data-alumni', [
-            'data'=> $this->read(),
-            'dataa'=> $this->readAlumni(),
+            'data' => $this->read(),
+            'dataa' => $this->readAlumni(),
         ])->layout('layouts.landingpage', [
-            'data'=> $this->read(),
+            'data' => $this->read(),
         ]);
     }
 }

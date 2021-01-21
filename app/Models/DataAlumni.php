@@ -9,7 +9,7 @@ class DataAlumni extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'namaAlumni','nisAlumni','tmptLahir','tglLahir', 'telpAlumni', 'emailAlumni', 'gender', 'jurusanAlumni',
+        'namaAlumni', 'nisAlumni', 'tmptLahir', 'tglLahir', 'telpAlumni', 'emailAlumni', 'gender', 'jurusanAlumni',
         'thnLulus', 'pkl', 'pengalamanKrj', 'statusPkrjaan', 'tmptKerKul',
     ];
 

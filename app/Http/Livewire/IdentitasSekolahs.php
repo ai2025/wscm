@@ -15,7 +15,7 @@ class IdentitasSekolahs extends Component
     use WithPagination;
     use WithFileUploads;
 
-    public $modalIdentitas = false;
+    // public $modalIdentitas = false;
 
     public $nama, $nis, $alamat, $kab, $provinsi, $negara, $email, $web, $telp, $pos, $id_identitas;
     public $is_showing, $imgIdent, $keterangan, $id_img, $tempImg;
@@ -72,6 +72,17 @@ class IdentitasSekolahs extends Component
         // }
     }
 
+    public function read()
+    {
+        return IdentitasSekolah::select('*')->get();
+        // $this->resetPage();
+    }
+
+    public function readImg()
+    {
+        return ImgCarIdenSekolah::select('*')->get();
+    }
+
     public function create()
     {
         // $switchRule = 0;
@@ -96,17 +107,6 @@ class IdentitasSekolahs extends Component
         ImgCarIdenSekolah::create($valData);
         $this->reloadPage();
         session()->flash('msgUpdateIdentitas', 'GAMBAR successfully added.');
-    }
-
-    public function read()
-    {
-        return IdentitasSekolah::select('*')->get();
-        // $this->resetPage();
-    }
-
-    public function readImg()
-    {
-        return ImgCarIdenSekolah::select('*')->get();
     }
 
     public function update()
@@ -203,15 +203,15 @@ class IdentitasSekolahs extends Component
         $this->keterangan = $dim->keterangan;
     }
 
-    public function loadDataImgUp($id)
-    {
-        $this->id_img = $id;
-        $dim = ImgCarIdenSekolah::find($this->id_img);
-        // $this->sequence = $dim->sequence;
-        $this->is_showing = $dim->is_showing;
-        // $this->imgIdent = $dim->imgIden;
-        $this->keterangan = $dim->keterangan;
-    }
+    // public function loadDataImgUp($id)
+    // {
+    //     $this->id_img = $id;
+    //     $dim = ImgCarIdenSekolah::find($this->id_img);
+    //     // $this->sequence = $dim->sequence;
+    //     $this->is_showing = $dim->is_showing;
+    //     // $this->imgIdent = $dim->imgIden;
+    //     $this->keterangan = $dim->keterangan;
+    // }
 
     public function loadData($id)
     {
