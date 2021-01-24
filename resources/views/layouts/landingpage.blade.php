@@ -37,6 +37,15 @@
         <!-- Template Main CSS File -->
         <link href="{{ asset('tpl/css/style.css') }}" rel="stylesheet">
 
+        {{-- trix --}}
+        {{-- <link rel="stylesheet" type="text/css" href="{{ asset('css/trix.css') }}">
+        <script type="text/javascript" src="{{ asset('js/trix.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/attachments.js') }}"></script> --}}
+
+        {{-- medium --}}
+        {{-- <link rel="stylesheet" href="{{ asset('medist/css/medium-editor.css') }}"> <!-- Core -->
+        <link rel="stylesheet" href="{{ asset('medist/css/themes/default.css') }}"> <!-- or any other theme --> --}}
+
         <!-- Boxicons CSS -->
         <!-- {{-- <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'> --}} -->
 
@@ -48,6 +57,8 @@
         <!-- {{-- <link rel="stylesheet" href="{{ mix('css/app.css') }}"> --}} -->
 
         @trixassets
+
+        {{-- @cloudinaryJS --}}
 
         @livewireStyles
 
@@ -290,6 +301,12 @@
 
         {{-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script> --}}
+
+        {{-- medium --}}
+        {{-- <script src="{{ asset('medist/js/medium-editor.js') }}"></script> --}}
+
+        {{-- trix --}}
+        {{-- <script type="text/javascript" src="{{ asset('js/attachments.js') }}"></script> --}}
 
         @livewireScripts
     </body>

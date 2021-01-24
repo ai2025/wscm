@@ -11,5 +11,27 @@ class Blog extends Model
     use HasFactory;
     use HasTrixRichText;
 
-    protected $fillable = ['tag', 'title', 'content',];
+    protected $guarded = [];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleted(function ($post) {
+            $post->trixRichText->each->delete();
+            $post->trixAttachments->each->purge();
+        });
+    }
+
+    // public function trixRender($field)
+    // {
+    //     return $this->trixRichText->where('field', $field)->first()->content;
+    // }
+
+    // public function trixImageRender($field)
+    // {
+    //     return $this->trixAttachments->where('field', $field)->first()->attachment;
+    // }
+
+    // protected $fillable = ['tag', 'title', 'content',];
 }
