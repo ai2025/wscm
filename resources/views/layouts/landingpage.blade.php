@@ -36,6 +36,7 @@
 
         <!-- Template Main CSS File -->
         <link href="{{ asset('tpl/css/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
         {{-- trix --}}
         {{-- <link rel="stylesheet" type="text/css" href="{{ asset('css/trix.css') }}">
