@@ -20,12 +20,12 @@ class VMTPage extends Component
     public $togglePage = false;
     public $tag = '';
 
-    public function create(Request $req)
+    public function create()
     {
         $tags = request('tag');
         $d = Blog::find($tags);
         if ($d > 0) {
-            session()->flash('msg', 'Blog ' . $tags . ' sudah ada, mohon lakukan update.');
+            session()->flash('msgWar', 'Blog ' . $tags . ' sudah ada, mohon lakukan update.');
             return redirect()->route('showVMTPage');
         } else {
             $rq = request('blog-trixFields');
@@ -37,7 +37,7 @@ class VMTPage extends Component
                         'tag' => request('tag'),
                         'title' => request('title'),
                         'blog-trixFields' => request('blog-trixFields'),
-                        'attachment-blog-trixFields' => request('attachment-blog-trixFields')
+                        'attachment-blog-trixFields' => request('attachment-blog-trixFields'),
                     ]);
                     session()->flash('msg', 'Blog successfully added.');
                     return redirect()->route('showVMTPage');

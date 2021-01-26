@@ -81,12 +81,16 @@ Route::get('/', Landingpage::class);
 
 //PROFIL
 Route::get('/profil/visiMisiTujuan', VMTPage::class)->name('showVMTPage');
-Route::get('/profil/identitasSekolah', IdentitasSekolahs::class);
-Route::get('/profil/strukturOrg', StrukturOrganisasi::class);
-
 // CRUD VMT
 Route::post('/profil/visiMisiTujuan', [VMTPage::class, 'create']);
 Route::patch('/profil/visiMisiTujuan/{id}', [VMTPage::class, 'update']);
+
+Route::get('/profil/identitasSekolah', IdentitasSekolahs::class);
+
+Route::get('/profil/strukturOrg', StrukturOrganisasi::class)->name('showSOPage');
+// CRUD STRUKTUR ORG
+Route::post('/profil/strukturOrg', [StrukturOrganisasi::class, 'create']);
+Route::patch('/profil/strukturOrg/{id}', [StrukturOrganisasi::class, 'update']);
 
 //JURUSAN
 Route::get('/paketKeahlian/agbsnsTani', Pertanian::class);

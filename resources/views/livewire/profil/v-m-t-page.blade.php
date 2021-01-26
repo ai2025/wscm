@@ -141,7 +141,7 @@
                                         <ul>
                                             <li>Mengisi kolom konten dibawah ini sebelum menekan tombol "SUBMIT".</li>                                            
                                             <li>File yang dapat diterima oleh sistem hanya berupa GAMBAR.</li>
-                                            <li>Fitur caption yag berada dibawah gambar masih tidak dapat digunakan</li>
+                                            <li>Mohon untuk memberikan caption pada gambar (jika mengupload gambar).</li>
                                         </ul>
                                     </p>
                                 </div>
@@ -189,6 +189,7 @@
                                         <ul>
                                             <li>Mengisi kolom konten dibawah ini sebelum menekan tombol "SUBMIT".</li>
                                             <li>File yang dapat diterima oleh sistem hanya berupa GAMBAR.</li>
+                                            <li>Mohon untuk memberikan caption pada gambar (jika mengupload gambar).</li>
                                         </ul>
                                     </p>
                                 </div>
@@ -204,9 +205,9 @@
                                 </div>
                             </div>
                             <input type="submit" class="btn btn-primary float-right" />
-                                <button type="button"
-                                    class="btn btn-secondary" wire:click="delete_pending()">Close
-                                </button>
+                            <button type="button" class="btn btn-secondary" wire:click="delete_pending()">
+                                Close
+                            </button>
                             
                             @elseif($tedt)
                             <div class="form-group">
@@ -238,6 +239,7 @@
                                         <ul>
                                             <li>Mengisi kolom konten dibawah ini sebelum menekan tombol "SUBMIT".</li>
                                             <li>File yang dapat diterima oleh sistem hanya berupa GAMBAR.</li>
+                                            <li>Mohon untuk memberikan caption pada gambar (jika mengupload gambar).</li>
                                         </ul>
                                     </p>
                                 </div>
@@ -248,7 +250,7 @@
                                     @endforeach
                                     @else
                                     @trix(\App\Models\Blog::class, 'content')
-                                    @endif                                    
+                                    @endif
                                 </div>
                             </div>
                             <input type="submit" class="btn btn-primary float-right" />
