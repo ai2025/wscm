@@ -3,7 +3,6 @@
     <section id="hero" class="d-flex align-items-center">
         <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200">
             <h1>{{ $data->nama }}</h1>
-            {{-- <a href="#" class="btn-get-started scrollto">Get Started</a> --}}
         </div>
     </section>
     @endforeach
@@ -44,11 +43,9 @@
                         @if ($dataV->count())
                         @foreach ($dataV as $i)
                         <h3>{{ $i->title }}</h3>
-                        {{-- <div class="row"> --}}
                         <div id="fig-img-trix">
                             {!! $i->trixRichText->first()->content !!}
                         </div>
-                        {{-- </div> --}}
                         @auth
                         <button type="button" class="btn btn-success mb-5 mt-2" wire:click="loadData({{ $i->id }}, 1)">
                             Update Visi</button>
@@ -69,7 +66,6 @@
                         <div id="fig-img-trix">
                             {!! $i->trixRichText->first()->content !!}
                         </div>
-                        {{-- {!! $i->trixRichText->first()->content !!} --}}
                         @auth
                         <button type="button" class="btn btn-success mb-5 mt-2" wire:click="loadData({{ $i->id }}, 2)">
                             Update Misi</button>
@@ -92,7 +88,6 @@
                         <div id="fig-img-trix">
                             {!! $i->trixRichText->first()->content !!}
                         </div>
-                        {{-- {!! $i->trixRichText->first()->content !!} --}}
                         @auth
                         <button type="button" class="btn btn-success mb-5 mt-2" wire:click="loadData({{ $i->id }}, 3)">
                             Update Tujuan</button>
@@ -110,18 +105,14 @@
 
                 @else
                 <div>
-                    {{-- <form wire:submit.prevent="submit" class="php-email-form"> --}}
                     @if ($id_blog)
-                    {{-- {{ $id_blog }} EDIT --}}
-                    <form method="POST" action="/profil/visiMisiTujuan/{{ $id_blog }}" class="php-email-form"
-                        wire:ignore>
+                    <form method="POST" action="/profil/visiMisiTujuan/{{ $id_blog }}" class="php-email-form" wire:ignore>
                         @method('patch')
                         @else
                         <form method="POST" action="/profil/visiMisiTujuan" class="php-email-form" wire:ignore>
                             @endif
                             @csrf
                             @if ($tev)
-                            {{-- @foreach ($dataV as $i) --}}
                             <div class="form-group">
                                 <input type="hidden" name="tag" value="visi" wire:model.debounce.800ms="tag" required />
                                 @foreach ($dataV as $post)
@@ -139,7 +130,6 @@
                             </div>
                             <div class="form-group">
                                 <label for="blog-trixFields" class="mt-3">Konten untuk Visi :</label>
-                                {{-- <textarea id="blog-trixFields" cols="30" rows="10"></textarea> --}}
                                 <div class="alert alert-warning" role="alert">
                                     <h4 class="alert-heading">PERHATIAN!</h4>
                                     <p>
@@ -147,16 +137,11 @@
                                     </p>
                                     <hr>
                                     <p class="mb-0">
-                                        Agar konten dapat tersimpan dengan baik, mohon untuk: 
+                                        Agar konten dapat tersimpan dengan baik, mohon untuk memperhatikan hal berikut: 
                                         <ul>
-                                            <li>Mengisi kolom konten dibawah ini sebelum menekan tombol "SUBMIT".</li>
-                                            <li>
-                                                Apabila salah memasukkan gambar/tulisan mohon untuk dihapus/disilang terlebih dahulu 
-                                                sebelum kembali/berpindah ke halaman lain. Guna untuk memperingan sistem.
-                                            </li>
-                                            <li>
-                                                File yang dapat diterima oleh sistem hanya berupa GAMBAR. 
-                                            </li>
+                                            <li>Mengisi kolom konten dibawah ini sebelum menekan tombol "SUBMIT".</li>                                            
+                                            <li>File yang dapat diterima oleh sistem hanya berupa GAMBAR.</li>
+                                            <li>Fitur caption yag berada dibawah gambar masih tidak dapat digunakan</li>
                                         </ul>
                                     </p>
                                 </div>
@@ -167,18 +152,13 @@
                                     @endforeach
                                     @else                                    
                                     @trix(\App\Models\Blog::class, 'content')
-                                    @error('content') <p class="text-danger">{{ $message }}</p> @enderror
                                     @endif
                                 </div>
                             </div>
-                            {{-- <button type="button" class="btn btn-primary float-right" wire:click="create">Simpan</button> --}}
                             <input type="submit" class="btn btn-primary float-right" />
-                            {{-- <a href="{{ route('showVMTPage') }}"> --}}
                                 <button type="button"
                                     class="btn btn-secondary" wire:click="delete_pending()">Close
                                 </button>
-                            {{-- </a> --}}
-                            {{-- @endforeach --}}
 
                             @elseif($tem)
                             <div class="form-group">
@@ -198,7 +178,6 @@
                             </div>
                             <div class="form-group">
                                 <label for="blog-trixFields" class="mt-3">Konten untuk Misi :</label>
-                                {{-- <textarea id="blog-trixFields" cols="30" rows="10"></textarea> --}}
                                 <div class="alert alert-warning" role="alert">
                                     <h4 class="alert-heading">PERHATIAN!</h4>
                                     <p>
@@ -209,13 +188,7 @@
                                         Agar konten dapat tersimpan dengan baik, mohon untuk: 
                                         <ul>
                                             <li>Mengisi kolom konten dibawah ini sebelum menekan tombol "SUBMIT".</li>
-                                            <li>
-                                                Apabila salah memasukkan gambar/tulisan mohon untuk dihapus terlebih dahulu 
-                                                sebelum kembali/berpindah ke halaman lain. Guna untuk memperingan sistem.
-                                            </li>
-                                            <li>
-                                                File yang dapat diterima oleh sistem hanya berupa GAMBAR. 
-                                            </li>
+                                            <li>File yang dapat diterima oleh sistem hanya berupa GAMBAR.</li>
                                         </ul>
                                     </p>
                                 </div>
@@ -230,15 +203,11 @@
                                     @endif
                                 </div>
                             </div>
-                            {{-- <button type="button" class="btn btn-primary float-right" wire:click="create">Simpan</button> --}}
                             <input type="submit" class="btn btn-primary float-right" />
-                            {{-- <a href="{{ route('showVMTPage') }}"> --}}
                                 <button type="button"
                                     class="btn btn-secondary" wire:click="delete_pending()">Close
                                 </button>
-                            {{-- </a> --}}
-                            {{-- @endforeach --}}
-
+                            
                             @elseif($tedt)
                             <div class="form-group">
                                 <input type="hidden" name="tag" value="tujuan" wire:model.debounce.800ms="tag"
@@ -258,8 +227,6 @@
                             </div>
                             <div class="form-group">
                                 <label for="blog-trixFields" class="mt-3">Konten untuk Tujuan :</label>
-                                {{-- <textarea id="blog-trixFields" cols="30" rows="10"></textarea> --}}
-                                {{-- <br> --}}
                                 <div class="alert alert-warning" role="alert">
                                     <h4 class="alert-heading">PERHATIAN!</h4>
                                     <p>
@@ -270,19 +237,10 @@
                                         Agar konten dapat tersimpan dengan baik, mohon untuk: 
                                         <ul>
                                             <li>Mengisi kolom konten dibawah ini sebelum menekan tombol "SUBMIT".</li>
-                                            <li>
-                                                Apabila salah memasukkan gambar/tulisan mohon untuk dihapus terlebih dahulu 
-                                                sebelum kembali/berpindah ke halaman lain. Guna untuk memperingan sistem.
-                                            </li>
-                                            <li>
-                                                File yang dapat diterima oleh sistem hanya berupa GAMBAR. 
-                                            </li>
+                                            <li>File yang dapat diterima oleh sistem hanya berupa GAMBAR.</li>
                                         </ul>
                                     </p>
                                 </div>
-                                {{-- <textarea type="text" value="{{ request('blog-trixFields.*.content') }}"
-                                wire:model.debounce.800ms="content"
-                                name="content" id="content" cols="100" rows="10"></textarea> --}}
                                 <div wire:ignore>
                                     @if ($id_blog)
                                     @foreach ($dataV as $post)
@@ -290,21 +248,14 @@
                                     @endforeach
                                     @else
                                     @trix(\App\Models\Blog::class, 'content')
-                                    {{-- @error('content') <p class="text-danger">{{ $message }}</p> @enderror --}}
-                                    @endif
-                                    @if ($errorNotif)
-                                    <p class="text-danger">{{ $m }}</p>
-                                    @endif
+                                    @endif                                    
                                 </div>
                             </div>
-                            {{-- <button type="button" class="btn btn-primary float-right" wire:click="create">Simpan</button> --}}
                             <input type="submit" class="btn btn-primary float-right" />
-                            {{-- <a href="{{ route('showVMTPage') }}"> --}}
                                 <button type="button"
                                     class="btn btn-secondary" wire:click="delete_pending()">Close
                                 </button>
-                            {{-- </a> --}}
-                            {{-- @endforeach --}}
+
                             @endif
                         </form>
                 </div>
@@ -316,13 +267,3 @@
     </section>
     <!-- End visiMisiTujuan Section -->
 </main>
-{{-- @push('scripts')
-<script>
-    // Your JS here.
-    var editor = new MediumEditor('.editable');
-    // editor.subscribe('blur', function (event, editable) {
-    //     @this.set('content.about.description', editor.getContent());
-    // });
-
-</script>
-@endpush --}}
