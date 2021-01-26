@@ -274,7 +274,7 @@
                             <div class="modal-header">
                                 <h5 class="modal-title" id="staticBackdropLabel">
                                     @if ($id_img)
-                                    Update Gambar Slider {{ $id_img }}
+                                    Update Gambar Slider
                                     @else
                                     Tambah Gambar Slider
                                     @endif

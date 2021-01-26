@@ -136,14 +136,6 @@ h6 {
         display: none;
     }
 
-    #header-count {
-        padding: 80px;
-        margin: 0;
-        /* padding-left :380px;
-    margin-top:-75; 
-    margin-bottom :50px; */
-    }
-
     #header-BKK {
         top: 140px;
         width: 500px;
@@ -437,7 +429,16 @@ h6 {
     position: relative;
 }
 
-/* #hero .hero .container .header .text-center .gambar{
+#heroo {
+    width: 100%;
+    /* height: auto; */
+    height: 80vh;
+    /* background: url("../img/hero-bg.jpg") center center; */
+    background-size: cover;
+    position: relative;
+}
+
+/* #hero #hero .container .header .text-center .gambar{
     width: 100%;
     height: 80vh;
     background-size: cover;
@@ -450,11 +451,13 @@ h6 {
     position: relative;
 } */
 
-#hero .container {
+#hero .container,
+#heroo .container {
     padding-top: 80px;
 }
 
-#hero:before {
+#hero:before ,
+#heroo:before{
     content: "";
     background: rgba(0, 0, 0, 0.6);
     /* awalnya position absolute */
@@ -465,7 +468,8 @@ h6 {
     right: 0;
 }
 
-#hero h1 {
+#hero h1,
+#heroo h1 {
     margin: 0 0 10px 0;
     font-size: 48px;
     font-weight: 700;
@@ -473,7 +477,8 @@ h6 {
     color: #fff;
 }
 
-#hero h2 {
+#hero h2,
+#heroo h2 {
     color: #eee;
     margin-bottom: 40px;
     font-size: 15px;
@@ -483,7 +488,8 @@ h6 {
     text-transform: uppercase;
 }
 
-#hero .btn-get-started {
+#hero .btn-get-started,
+#heroo .btn-get-started {
     font-family: "Poppins", sans-serif;
     text-transform: uppercase;
     font-weight: 500;
@@ -498,27 +504,29 @@ h6 {
     color: #fff;
 }
 
-#hero .btn-get-started:hover {
+#hero .btn-get-started:hover,
+#heroo .btn-get-started:hover {
     background: #009970;
     border: 2px solid #009970;
 }
 
 @media (min-width: 1024px) {
-    #hero {
+    #hero, #heroo {
         background-attachment: fixed;
     }
 }
 
 @media (max-width: 768px) {
-    #hero {
+    #hero, #heroo {
         height: 100vh;
     }
 
-    #hero .container {
+    #hero .container,
+    #heroo .container {
         padding-top: 60px;
     }
 
-    #hero h1 {
+    #hero h1, #heroo h1 {
         font-size: 32px;
         line-height: 36px;
     }
