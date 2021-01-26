@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Admin\VMTPageAdmin;
 use App\Http\Livewire\IdentitasSekolahs;
 use App\Http\Livewire\Akreditasi;
 use App\Http\Livewire\Ekstrakurikuler;
@@ -77,10 +78,16 @@ Route::group(['middleware' => [
 });
 
 Route::get('/', Landingpage::class);
+
 //PROFIL
-Route::get('/profil/visiMisiTujuan', VMTPage::class);
+Route::get('/profil/visiMisiTujuan', VMTPage::class)->name('showVMTPage');
 Route::get('/profil/identitasSekolah', IdentitasSekolahs::class);
 Route::get('/profil/strukturOrg', StrukturOrganisasi::class);
+
+// CRUD VMT
+Route::post('/profil/visiMisiTujuan', [VMTPage::class, 'create']);
+Route::patch('/profil/visiMisiTujuan/{id}', [VMTPage::class, 'update']);
+
 //JURUSAN
 Route::get('/paketKeahlian/agbsnsTani', Pertanian::class);
 Route::get('/paketKeahlian/agbsnsIkan', Perikanan::class);
@@ -122,3 +129,26 @@ Route::get('/informasi', Informasi::class);
 Route::get('/ppdb', Ppdb::class);
 // Kontak
 Route::get('/kontak', Kontak::class);
+
+
+// routes
+Route::get('routes', function () {
+    $routeCollection = Route::getRoutes();
+
+    echo "<table style='width:100%'>";
+    echo "<tr>";
+    echo "<td width='10%'><h4>HTTP Method</h4></td>";
+    echo "<td width='10%'><h4>Route</h4></td>";
+    echo "<td width='10%'><h4>Name</h4></td>";
+    echo "<td width='70%'><h4>Corresponding Action</h4></td>";
+    echo "</tr>";
+    foreach ($routeCollection as $value) {
+        echo "<tr>";
+        echo "<td>" . $value->methods()[0] . "</td>";
+        echo "<td>" . $value->uri() . "</td>";
+        echo "<td>" . $value->getName() . "</td>";
+        echo "<td>" . $value->getActionName() . "</td>";
+        echo "</tr>";
+    }
+    echo "</table>";
+});
