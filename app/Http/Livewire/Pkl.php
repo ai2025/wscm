@@ -93,7 +93,6 @@ class Pkl extends Component
         $valData = $this->validate([
             'imgIdent' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'keterangan' => 'required|min:3|max:50',
-            'kategori' => 'required|min:3|max:50',
         ]);
 
         $valData['imgIden'] = $this->imgIdent->store('img_car_pkl', 'public');
@@ -108,7 +107,7 @@ class Pkl extends Component
 
     public function readImg()
     {
-        return ImgCarIdenSekolah::select('*')->get();
+        return ImgCarIdenSekolah::select('*')->where('kategori','pkl')->get();
     }
 
     public function updateImg()
@@ -120,7 +119,7 @@ class Pkl extends Component
             $valData = $this->validate([
                 'tempImg' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'keterangan' => 'required|min:3|max:50',
-                'kategori' => 'required|min:3|max:50',
+                // 'kategori' => 'required|min:3|max:50',
             ]);
 
             $valData['imgIden'] = $this->tempImg->store('img_car_pkl', 'public');
@@ -163,16 +162,16 @@ class Pkl extends Component
         $this->kategori = $dim->kategori;
     }
 
-    public function loadDataImgUp($id)
-    {
-        $this->id_img = $id;
-        $dim = ImgCarIdenSekolah::find($this->id_img);
-        // $this->sequence = $dim->sequence;
-        $this->is_showing = $dim->is_showing;
-        // $this->imgIdent = $dim->imgIden;
-        $this->keterangan = $dim->keterangan;
-        $this->kategori = $dim->kategori;
-    }
+    // public function loadDataImgUp($id)
+    // {
+    //     $this->id_img = $id;
+    //     $dim = ImgCarIdenSekolah::find($this->id_img);
+    //     // $this->sequence = $dim->sequence;
+    //     $this->is_showing = $dim->is_showing;
+    //     // $this->imgIdent = $dim->imgIden;
+    //     $this->keterangan = $dim->keterangan;
+    //     $this->kategori = $dim->kategori;
+    // }
 
     public function modelDataImg()
     {

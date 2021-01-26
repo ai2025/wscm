@@ -59,6 +59,10 @@ Route::get('/', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/', Landingpage::class);
 
+// Route::get('/auth/login', function() { 
+//     return view('auth.login'); 
+// });
+
 
 Route::group(['middleware' => [
     'auth:sanctum',

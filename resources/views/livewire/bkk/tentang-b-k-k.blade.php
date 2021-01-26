@@ -1,13 +1,14 @@
-<meta charset="UTF-8">
+<main id="main">
+{{-- <meta charset="UTF-8"> --}}
 @foreach ($data as $data)
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {{-- <meta name="viewport" content="width=device-width, initial-scale=1"> --}}
             <section id="hero" class="d-flex align-items-center">
                 <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200">
             <h1>{{ $data->nama }}</h1>
             {{-- <a href="#" class="btn-get-started scrollto">Get Started</a> --}}
         </div>
     </section>
-<main id="main">
+
     <!-- ======= fasSek Section ======= -->
     <section id="tentangBKK" class="portfolio">
         <div class="container">

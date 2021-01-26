@@ -15,8 +15,10 @@ class CreateImgCarIdenSekolahsTable extends Migration
     {
         Schema::create('img_car_iden_sekolahs', function (Blueprint $table) {
             $table->id();
+            $table->boolean('is_showing')->nullable();
             $table->string('imgIden');
             $table->string('keterangan');
+            $table->enum('kategori',['pkl','identitas','header']);
             $table->timestamps();
         });
     }

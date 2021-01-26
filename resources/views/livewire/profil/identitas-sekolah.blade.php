@@ -5,6 +5,7 @@
                     <div class="owl-carousel portfolio-details-carousel" id="owcar">
                         @if ($dataImg->count())
                         @foreach ($dataImg as $dim)
+                        @if ($dim->kategori=='identitas')
                         <div>
                             <div class="text-center" style="background-color:#d3d3d3">
                                 {{-- <img src="{{ asset('storage/'.$dim->imgIden) }}" alt="yah belum bisa"
@@ -26,6 +27,7 @@
                                     </ul> --}}
                             </div>
                         </div>
+                        @endif
                         @endforeach
                         @else
                         @for ($i = 0; $i < 3; $i++) <div>
@@ -76,6 +78,7 @@
                         </thead>
                         <tbody>
                             @foreach ($dataImg as $dim)
+                            @if ($dim->kategori=='identitas')
                             <tr>
                                 <th scope="row">{{ $dim->id }}</th>
                                 {{-- <td>{{ $dim->sequence }}</td> --}}
@@ -94,6 +97,7 @@
                                     </button>
                                 </td>
                             </tr>
+                            @endif
                             @endforeach
                         </tbody>
                     </table>
@@ -274,7 +278,6 @@
                                     @else
                                     Tambah Gambar Slider
                                     @endif
-
                                 </h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"
                                     wire:click="reloadPage">
@@ -343,7 +346,7 @@
                                         <span id="error-msg">{{ $message }}</span>
                                         @enderror
                                     </div>
-                            </div>
+                                </div>
                             <div class="modal-footer">
                                 {{-- <input type="hidden" name="id_img" wire:model="id_img"> --}}
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal"

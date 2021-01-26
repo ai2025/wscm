@@ -18,7 +18,7 @@ class IdentitasSekolahs extends Component
     // public $modalIdentitas = false;
 
     public $nama, $nis, $alamat, $kab, $provinsi, $negara, $email, $web, $telp, $pos, $id_identitas;
-    public $is_showing, $imgIdent, $keterangan, $id_img, $tempImg;
+    public $is_showing, $imgIdent, $keterangan, $kategori, $id_img, $tempImg;
     // public $switchRule = 0;
     // public $statusUp = false;
 
@@ -80,7 +80,7 @@ class IdentitasSekolahs extends Component
 
     public function readImg()
     {
-        return ImgCarIdenSekolah::select('*')->get();
+        return ImgCarIdenSekolah::select('*')->where('kategori','identitas')->get();
     }
 
     public function create()
@@ -103,6 +103,7 @@ class IdentitasSekolahs extends Component
 
         $valData['imgIden'] = $this->imgIdent->store('img_car_iden_sekolahs', 'public');
         $valData['is_showing'] = $this->is_showing;
+        $valData['kategori'] = 'identitas';
 
         ImgCarIdenSekolah::create($valData);
         $this->reloadPage();
@@ -129,6 +130,7 @@ class IdentitasSekolahs extends Component
             $valData = $this->validate([
                 'tempImg' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'keterangan' => 'required|min:3|max:50',
+                'kategori' => 'required|min:3|max:50',
             ]);
 
             $valData['imgIden'] = $this->tempImg->store('img_car_iden_sekolahs', 'public');
@@ -201,6 +203,7 @@ class IdentitasSekolahs extends Component
         $this->is_showing = $dim->is_showing;
         $this->imgIdent = $dim->imgIden;
         $this->keterangan = $dim->keterangan;
+        $this->kategori = $dim->kategori;
     }
 
     // public function loadDataImgUp($id)
@@ -257,6 +260,7 @@ class IdentitasSekolahs extends Component
             'is_showing' => $this->is_showing,
             'imgIden' => $this->imgIdent,
             'keterangan' => $this->keterangan,
+            'kategori' => $this->kategori,
         ];
     }
 
