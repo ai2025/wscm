@@ -22,7 +22,7 @@
     <!-- End Hero -->
 
     <!-- ======= Team Section ======= -->
-    <section id="Struktur Organisasi" class="portfolio">
+    <section id="struktur_organisasi" class="portfolio">
         <div class="container">
             <div class="section-title">
                 @if ($togglePage && $id_blog)

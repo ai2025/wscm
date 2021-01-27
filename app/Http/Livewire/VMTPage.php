@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Blog;
 use App\Models\IdentitasSekolah;
+use App\Models\ImgCarIdenSekolah;
 use Illuminate\Http\Request;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -64,6 +65,12 @@ class VMTPage extends Component
         } else if ($tags == 3) {
             return Blog::select('*')->where('tag', 'tujuan')->get();
         }
+    }
+
+    public function readHero($tag)
+    {
+        return ImgCarIdenSekolah::select("*")->where('kategori', $tag)->get();
+        // $this->resetPage();
     }
 
     public function update()
@@ -134,7 +141,7 @@ class VMTPage extends Component
             'dataV' => $this->readBlog(1),
             'dataM' => $this->readBlog(2),
             'dataT' => $this->readBlog(3),
-            // 'findID' => $this->findID(),
+            'dataHero' => $this->readHero('header'),
         ])->layout('layouts.landingpage', [
             'data' => $this->read(),
         ]);

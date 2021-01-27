@@ -73,9 +73,12 @@ class StrukturOrganisasi extends Component
     {
         // dd(request('blog-trixFields'));
         $trad = TrixAttachment::where('is_pending', 1)->get();
-        $this->t_content_img = $trad[0]['attachment'];
-        unlink('storage/' . $this->t_content_img);
-        TrixAttachment::where('is_pending', 1)->delete();
+        if (count($trad) > 0) {
+            // dd("NULL");
+            $this->t_content_img = $trad[0]['attachment'];
+            unlink('storage/' . $this->t_content_img);
+            TrixAttachment::where('is_pending', 1)->delete();
+        }
         session()->flash('msgWar', 'Anda telah membatalkan aksi.');
         return redirect()->route('showSOPage');
     }
