@@ -209,9 +209,9 @@
                             <h4>Useful Links</h4>
                             <ul>
                                 <li><i class="bx bx-chevron-right"></i> <a href="/">Home</a></li>
-                                <li><i class="bx bx-chevron-right"></i> <a href="#">Profil</a></li>
-                                <li><i class="bx bx-chevron-right"></i> <a href="#">Paket Keahlian</a></li>
-                                <li><i class="bx bx-chevron-right"></i> <a href="/kontak">Kontak</a></li>
+                                <li><i class="bx bx-chevron-right"></i> <a href="{{ url('/profil/identitasSekolah') }}">Profil</a></li>
+                                <li><i class="bx bx-chevron-right"></i> <a href="{{ url('/paketKeahlian/agbsnsTani') }}">Paket Keahlian</a></li>
+                                <li><i class="bx bx-chevron-right"></i> <a href="{{ url('/kontak') }}">Kontak</a></li>
                                 
                                 
                                 <!-- <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li> -->

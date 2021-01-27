@@ -93,7 +93,7 @@ class OrganisasiKesiswaan extends Component
     {
         return view('livewire.kesiswaan.organisasi-kesiswaan', [
             'data'=> $this->read(),
-            'data' => $this->read(),
+            'blog' => $this->readBlog(),
             'dataHero' => $this->readHero('header'),
         ])->layout('layouts.landingpage', [
             'data'=> $this->read(),

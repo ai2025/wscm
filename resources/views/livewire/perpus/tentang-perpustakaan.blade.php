@@ -1,5 +1,4 @@
 <main id="main">
-
     @foreach ($data as $data)
 
     <!-- {{-- Hero section --}} -->
@@ -11,8 +10,9 @@
         @else
         <section id="hero" class="d-flex align-items-center">
             @endif
-            <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200" style="height: 200px;">
-                <h1>{{ $data->nama }}</h1>
+            <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200" style="
+        height: 200px;">
+                <h1>{{ $data->nama }}</h1>                
             </div>
             @if ($dataHero->count())
         </section>

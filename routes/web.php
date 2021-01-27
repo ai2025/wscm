@@ -212,22 +212,38 @@ Route::post('/sarpras/orgnssSarpras', [OrganisasiSarPras::class, 'create']);
 Route::patch('/sarpras/orgnssSarpras/{id}', [OrganisasiSarPras::class, 'update']);
 //PROGRAM KERJA SARPRAS
 Route::get('/sarpras/prgrmkrjSarpras', ProgramKerjaSarPras::class)->name('showPKSarprasPage');
-// CRUD ORGANISASI SARPRAS
+// CRUD KERJA SARPRAS
 Route::post('/sarpras/prgrmkrjSarpras', [ProgramKerjaSarPras::class, 'create']);
 Route::patch('/sarpras/prgrmkrjSarpras/{id}', [ProgramKerjaSarPras::class, 'update']);
 //FASILITAS SEKOLAH
 Route::get('/sarpras/fasSekolah', FasilitasSekolah::class)->name('showFasilitasPage');
 // CRUD FASILITAS SEKOLAH
-Route::post('/sarpras/fasSekolah', [ProgramKerjaSarPras::class, 'create']);
-Route::patch('/sarpras/fasSekolah/{id}', [ProgramKerjaSarPras::class, 'update']);
+Route::post('/sarpras/fasSekolah', [FasilitasSekolah::class, 'create']);
+Route::patch('/sarpras/fasSekolah/{id}', [FasilitasSekolah::class, 'update']);
 
 // Perpus
-Route::get('/perpus/tntgPerpus', TentangPerpustakaan::class);
-Route::get('/perpus/orgnssPerpus', OrganisasiPerpustakaan::class);
+Route::get('/perpus/tntgPerpus', TentangPerpustakaan::class)->name('showTtgPerpusPage');
+// CRUD TENTANG PERPUS
+Route::post('/perpus/tntgPerpus', [TentangPerpustakaan::class, 'create']);
+Route::patch('/perpus/tntgPerpus/{id}', [TentangPerpustakaan::class, 'update']);
+//ORGANISASI PERPUS
+Route::get('/perpus/orgnssPerpus', OrganisasiPerpustakaan::class)->name('showOrgPerpusPage');
+// CRUD TENTANG PERPUS
+Route::post('/perpus/orgnssPerpus', [OrganisasiPerpustakaan::class, 'create']);
+Route::patch('/perpus/orgnssPerpus/{id}', [OrganisasiPerpustakaan::class, 'update']);
+
 // Informasi
-Route::get('/informasi', Informasi::class);
+Route::get('/informasi', Informasi::class)->name('showInfoPage');
+// CRUD Informasi
+Route::post('/informasi', [Informasi::class, 'create']);
+Route::patch('/informasi/{id}', [Informasi::class, 'update']);
+
 //PPDB
-Route::get('/ppdb', Ppdb::class);
+Route::get('/ppdb', Ppdb::class)->name('showPPDBPage');
+// CRUD PPDB
+Route::post('/ppdb', [Ppdb::class, 'create']);
+Route::patch('/ppdb/{id}', [Ppdb::class, 'update']);
+
 // Kontak
 Route::get('/kontak', Kontak::class);
 

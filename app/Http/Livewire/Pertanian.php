@@ -83,11 +83,18 @@ class Pertanian extends Component
         return IdentitasSekolah::orderBy('created_at', 'DESC')->get();
     }
 
+    public function readHero($tag)
+    {
+        return ImgCarIdenSekolah::select("*")->where('kategori', $tag)->get();
+        // $this->resetPage();
+    }
+
     public function render()
     {
         return view('livewire.paketKeahlian.pertanian', [
             'data'=> $this->read(),
             'blog' => $this->readBlog(),
+            'dataHero' => $this->readHero('header'),
         ])->layout('layouts.landingpage', [
             'data'=> $this->read(),
         ]);

@@ -1,15 +1,25 @@
-{{-- <meta charset="UTF-8"> --}}
 <main id="main">
-    @foreach ($data as $d)
-    {{-- <meta name="viewport" content="width=device-width, initial-scale=1"> --}}
-    <section id="hero" class="d-flex align-items-center">
-        <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200">
-            <h1>{{ $d->nama }}</h1>
-            {{-- <a href="#" class="btn-get-started scrollto">Get Started</a> --}}
-        </div>
-    </section>
-    @endforeach
+    @foreach ($data as $data)
 
+    <!-- {{-- Hero section --}} -->
+    @if ($dataHero->count())
+    @foreach ($dataHero as $i)
+    <section id="heroo" class="d-flex align-items-center position-relative w-100"
+        style="background: url({{ asset('storage/'.$i->imgIden) }}) center center !important; background-size: cover !important; position: relative !important;">
+        @endforeach
+        @else
+        <section id="hero" class="d-flex align-items-center">
+            @endif
+            <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200" style="
+        height: 200px;">
+                <h1>{{ $data->nama }}</h1>                
+            </div>
+            @if ($dataHero->count())
+        </section>
+        @else
+    </section>
+    @endif
+    <!-- End Hero -->
 
     <!-- ======= inputDataAlumni Section ======= -->
     @auth
@@ -298,5 +308,5 @@
         </div>
     </div>
 </div>
-
+@endforeach
 </main>

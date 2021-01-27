@@ -1,10 +1,11 @@
 <main id="main">
     @foreach ($data as $data)
-         <!-- {{-- Hero section --}} -->
+
+    <!-- {{-- Hero section --}} -->
     @if ($dataHero->count())
     @foreach ($dataHero as $i)
     <section id="heroo" class="d-flex align-items-center position-relative w-100"
-        style="background: url ({{ asset('storage/'.$i->imgIden) }}) center center !important; background-size: cover !important; position: relative !important;">
+        style="background: url({{ asset('storage/'.$i->imgIden) }}) center center !important; background-size: cover !important; position: relative !important;">
         @endforeach
         @else
         <section id="hero" class="d-flex align-items-center">
