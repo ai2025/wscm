@@ -16,7 +16,7 @@ class StrukturOrganisasi extends Component
     {
         if ($this->readBlog()->count()) {
             session()->flash('msgWar', 'Blog Struktur Organisasi sudah ada, mohon lakukan update.');
-            return redirect()->route('showVMTPage');
+            return redirect()->route('showSOPage');
         } else {
             $rq = request('blog-trixFields');
             foreach ($rq as $key => $value) {

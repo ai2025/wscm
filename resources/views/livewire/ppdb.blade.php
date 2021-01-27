@@ -10,9 +10,9 @@
                     @if ($dim->kategori=='header')
                         <div>
                             <div class="text-center">
-                                <h1>{{ $data->nama }}</h1>
-                                <img src="{{ asset('storage/'.$dim->imgIden) }}" alt="yah belum bisa"
-                                class="gambar" >
+                                {{-- <h1>{{ $data->nama }}</h1> --}}
+                                <img src="{{ asset('storage/'.$dim->imgIden) }}" alt="yah belum bisa" title="{{ $data->nama }}"
+                                class="mx-auto d-block" >
                             </div>
                         </div>
                     @endif
