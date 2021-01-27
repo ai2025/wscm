@@ -1,38 +1,41 @@
 <?php
 
 namespace App\Http\Livewire;
+
 use App\Models\IdentitasSekolah;
 use App\Models\JmlhPsrtDidik;
+use App\Models\ImgCarIdenSekolah;
+use Livewire\WithFileUploads;
 use Livewire\Component;
 
 class Landingpage extends Component
 {
+    use WithFileUploads;
+
     public $modalIdentitas = false;
     public $modalLanding = false;
 
-    public $nama, $nis, $alamat, $kab, $provinsi, $negara, $email, $web, $telp, $pos, $id_identitas, 
-    $jmlhSis, $guru, $kelas, $jurusan, $id_jmlh;
+    public $nama, $nis, $alamat, $kab, $provinsi, $negara, $email, $web, $telp, $pos, $id_identitas,
+        $jmlhSis, $guru, $kelas, $jurusan, $id_jmlh;
+
+    public $id_hero, $is_showing, $keterangan, $kategori, $imgIden, $is_show, $tempImg;
 
     public $judul = [
         'nama' => 'Nama Sekolah',
-        'nis' => 'NIS',
         'alamat' => 'Alamat',
         'kab' => 'Kabupaten',
-        'provinsi' => 'Provinsi',
-        'negara' => 'Negara',
         'email' => 'Email',
         'web' => 'Website',
         'telp' => 'Telepon',
-        'pos' => 'Kode POS',
     ];
-    
+
     public $judulJmlh = [
         'jmlhSis' => 'Jumlah Siswa',
         'guru' => 'Guru',
         'kelas' => 'Kelas',
         'jurusan' => 'Jurusan',
     ];
-    
+
     public function rules()
     {
         return [
@@ -78,14 +81,37 @@ class Landingpage extends Component
         // return redirect()->to('/');
     }
 
+    public function createHero()
+    {
+        // $switchRule = 1;
+        $valData = $this->validate([
+            'imgIden' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+        ]);
+
+        $valData['is_showing'] = 1;
+        $valData['imgIden'] = $this->imgIden->store('hero', 'public');
+        $valData['keterangan'] = 'header/hero';
+        $valData['kategori'] = 'header';
+
+        ImgCarIdenSekolah::create($valData);
+        session()->flash('msgUpdateJumlah', 'GAMBAR successfully added.');
+        return redirect()->to('/');
+    }
+
     public function read()
     {
         return IdentitasSekolah::orderBy('created_at', 'DESC')->get();
     }
-    
+
     public function readJmlh()
     {
         return JmlhPsrtDidik::orderBy('created_at', 'DESC')->get();
+        // $this->resetPage();
+    }
+
+    public function readHero($tag)
+    {
+        return ImgCarIdenSekolah::select("*")->where('kategori', $tag)->get();
         // $this->resetPage();
     }
 
@@ -105,6 +131,31 @@ class Landingpage extends Component
         // JmlhPsrtDidik::find($this->id_jmlh)->updateJmlh($this->modelDataJmlh());
         // session()->flash('msgUpdateJumlah', 'Jumlah successfully updated.');
         // return redirect()->to('/');
+    }
+
+    public function updateHero()
+    {
+        // $valData = '';
+        // $tempImg = $this->imgIdent;
+        if ($this->tempImg != null) {
+            // dd("not null");
+            $valData = $this->validate([
+                'tempImg' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            ]);
+
+            $valData['imgIden'] = $this->tempImg->store('hero', 'public');
+            unlink('storage/' . $this->imgIden);
+        } else {
+            dd("NULL");
+        }
+
+        // dd($valData);
+        $valData['is_showing'] = 1;
+        $valData['keterangan'] = 'header/hero';
+        $valData['kategori'] = 'header';
+        ImgCarIdenSekolah::find($this->id_hero)->update($valData);
+        session()->flash('msgUpdateJumlah', 'GAMBAR successfully updated.');
+        return redirect()->to('/');
     }
 
     /**
@@ -128,7 +179,7 @@ class Landingpage extends Component
         $this->telp = $data->telp;
         $this->pos = $data->pos;
     }
-    
+
     public function loadDataJmlh($idj)
     {
         $this->id_jmlh = $idj;
@@ -137,6 +188,16 @@ class Landingpage extends Component
         $this->guru = $dataa->guru;
         $this->kelas = $dataa->kelas;
         $this->jurusan = $dataa->jurusan;
+    }
+
+    public function loadDataHero($id)
+    {
+        $this->id_hero = $id;
+        $d = ImgCarIdenSekolah::find($this->id_hero)->first();
+        $this->is_showing = $d->is_showing;
+        $this->imgIden = $d->imgIden;
+        $this->keterangan = $d->keterangan;
+        $this->kategori = $d->kategori;
     }
 
     /**
@@ -171,6 +232,19 @@ class Landingpage extends Component
         ];
     }
 
+    public function modelDataHero()
+    {
+        if ($this->is_showing == "true") {
+            $this->is_show = 1;
+        }
+        return [
+            'is_showing' => $this->is_show,
+            'keterangan' => $this->keterangan,
+            'kategori' => $this->kategori,
+            'imgIden' => $this->imgIden,
+        ];
+    }
+
     /**
      * viewnya
      *
@@ -179,11 +253,12 @@ class Landingpage extends Component
     // 'data' => $this->read(),
     public function render()
     {
-        return view('livewire.landingpage' , [
-            'data'=> $this->read(),
-            'dataa'=> $this->readJmlh(),
+        return view('livewire.landingpage', [
+            'data' => $this->read(),
+            'dataa' => $this->readJmlh(),
+            'dataHero' => $this->readHero('header'),
         ])->layout('layouts.landingpage', [
-            'data'=> $this->read(),
+            'data' => $this->read(),
         ]);
     }
 }

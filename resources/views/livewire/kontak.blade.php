@@ -1,12 +1,35 @@
 <main id="main">
+
     @foreach ($data as $data)
-    <section id="kontak" class="contact">
+
+    <!-- {{-- Hero section --}} -->
+    @if ($dataHero->count())
+    @foreach ($dataHero as $i)
+    <section id="heroo" class="d-flex align-items-center position-relative w-100"
+        style="background: url({{ 'storage/'.$i->imgIden }}) center center !important; background-size: cover !important; position: relative !important;">
+        @endforeach
+        @else
+        <section id="hero" class="d-flex align-items-center">
+            @endif
+            <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200" style="
+        height: 200px;">
+                <h1>{{ $data->nama }}</h1>                
+            </div>
+            @if ($dataHero->count())
+        </section>
+        @else
+    </section>
+    @endif
+    <!-- End Hero -->
+
+    
+    <section id="kontak" class="contact mt-5">
     <div class="container">
         <div class="row">
             <div class="col-lg-4" data-aos="fade-right">
                 <div class="section-title">
-                    <h2 id="isi-kontak">Kontak</h2>
-                    <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+                    <h2 id="isi-kontak">Kontak Kami</h2>
+                    {{-- <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p> --}}
                 </div>
             </div>
 

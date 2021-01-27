@@ -13,7 +13,7 @@ class VMTPage extends Component
 {
     use WithFileUploads;
 
-    public $title, $id_blog, $temporary_id, $content, $t_content_img;
+    public $title, $id_blog, $temporary_id, $t_content_img;
     public $tev = false;
     public $tem = false;
     public $tedt = false;
@@ -90,9 +90,12 @@ class VMTPage extends Component
     {
         // dd(request('blog-trixFields'));
         $trad = TrixAttachment::where('is_pending', 1)->get();
-        $this->t_content_img = $trad[0]['attachment'];
-        unlink('storage/' . $this->t_content_img);
-        TrixAttachment::where('is_pending', 1)->delete();
+        if (count($trad) > 0) {
+            // dd("NULL");
+            $this->t_content_img = $trad[0]['attachment'];
+            unlink('storage/' . $this->t_content_img);
+            TrixAttachment::where('is_pending', 1)->delete();
+        }
         session()->flash('msgWar', 'Anda telah membatalkan aksi.');
         return redirect()->route('showVMTPage');
     }
@@ -102,7 +105,6 @@ class VMTPage extends Component
         $this->id_blog = $id;
         $load = Blog::find($id);
         $this->title = $load->title;
-        $this->content = $load->content;
         $this->temporary_id = $load->id;
         // dd($load);
         $this->toggleEd($tags);

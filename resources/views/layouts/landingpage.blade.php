@@ -185,12 +185,13 @@
         <!-- ======= Footer ======= -->
         
         <footer id="footer">
+            @foreach ($data as $data)
             <div class="footer-top">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-5 col-md-6 footer-contact">
                              
-                            @foreach ($data as $data)
+                            
                         <h3>{{ $data->nama }}</h3>
                         <p>
                             {{ $data->alamat }} <br>
@@ -199,7 +200,7 @@
                                 <strong>Phone:</strong> {{ $data->telp }}<br>
                                 <strong>Email:</strong> {{ $data->email }}<br>
                             </p>
-                            @endforeach 
+                            
         
                             
                         </div>
@@ -244,7 +245,7 @@
 
                 <div class="mr-md-auto text-center text-md-left">
                     <div class="copyright">
-                        &copy; Copyright <strong><span>SMK NEGERI 1 GRUJUGAN</span></strong>. All Rights Reserved
+                        &copy; Copyright <strong><span>{{ $data->nama }}</span></strong>. All Rights Reserved                        
                     </div>
                     <div class="credits">
                         <!-- All the links in the footer should remain intact. -->
@@ -280,6 +281,7 @@
                     <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a> --}}
                 </div>
             </div>
+            @endforeach 
         </footer><!-- End Footer -->
 
         <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>

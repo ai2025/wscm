@@ -200,7 +200,7 @@
                                     @endforeach
                                     @else                                    
                                     @trix(\App\Models\Blog::class, 'content')
-                                    @error('content') <p class="text-danger">{{ $message }}</p> @enderror
+                                    {{-- @error('content') <p class="text-danger">{{ $message }}</p> @enderror --}}
                                     @endif
                                 </div>
                             </div>
