@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Blog;
 use App\Models\IdentitasSekolah;
+use App\Models\ImgCarIdenSekolah;
 use Te7aHoudini\LaravelTrix\Models\TrixAttachment;
 use Livewire\Component;
 
@@ -50,6 +51,12 @@ class StrukturOrganisasi extends Component
         return Blog::select('*')->where('tag', 'struktur_organisasi')->get();
     }
 
+    public function readHero($tag)
+    {
+        return ImgCarIdenSekolah::select("*")->where('kategori', $tag)->get();
+        // $this->resetPage();
+    }
+
     public function update()
     {
         Blog::find(intval(request()->route('id')))->update([
@@ -89,6 +96,7 @@ class StrukturOrganisasi extends Component
         return view('livewire.profil.struktur-organisasi', [
             'data' => $this->read(),
             'blog' => $this->readBlog(),
+            'dataHero' => $this->readHero('header'),
         ])->layout('layouts.landingpage', [
             'data' => $this->read(),
         ]);

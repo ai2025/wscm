@@ -1,12 +1,25 @@
 <main id="main">
     @foreach ($data as $data)
-    <section id="hero" class="d-flex align-items-center">
-        <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200">
-            <h1>{{ $data->nama }}</h1>
-            {{-- <a href="#" class="btn-get-started scrollto">Get Started</a> --}}
-        </div>
+
+    <!-- {{-- Hero section --}} -->
+    @if ($dataHero->count())
+    @foreach ($dataHero as $i)
+    <section id="heroo" class="d-flex align-items-center position-relative w-100"
+        style="background: url({{ asset('storage/'.$i->imgIden) }}) center center !important; background-size: cover !important; position: relative !important;">
+        @endforeach
+        @else
+        <section id="hero" class="d-flex align-items-center">
+            @endif
+            <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200" style="
+        height: 200px;">
+                <h1>{{ $data->nama }}</h1>                
+            </div>
+            @if ($dataHero->count())
+        </section>
+        @else
     </section>
-    @endforeach
+    @endif
+    <!-- End Hero -->
 
     <!-- ======= Team Section ======= -->
     <section id="Struktur Organisasi" class="portfolio">
@@ -106,13 +119,11 @@
                         <button type="button" class="btn btn-secondary" wire:click="delete_pending()">
                             Close
                         </button>
-                        @endif
-
-
-                        {{-- <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem.</p> <br>
-                <img src="/tpl/img/bagan.png" class="img-fluid" alt=""> --}}
+                    </form>
+                    @endif
             </div>
         </div>
     </section>
+    @endforeach
     <!-- End Team Section -->
 </main>
