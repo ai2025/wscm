@@ -201,10 +201,26 @@ Route::post('/kesiswaan/prestasi', [Prestasi::class, 'create']);
 Route::patch('/kesiswaan/prestasi/{id}', [Prestasi::class, 'update']);
 
 // SarPras
-Route::get('/sarpras/tntgSarpras', TentangSarPras::class);
-Route::get('/sarpras/orgnssSarpras', OrganisasiSarPras::class);
-Route::get('/sarpras/prgrmkrjSarpras', ProgramKerjaSarPras::class);
-Route::get('/sarpras/fasSekolah', FasilitasSekolah::class);
+Route::get('/sarpras/tntgSarpras', TentangSarPras::class)->name('showTSarprasPage');
+// CRUD SarPras
+Route::post('/sarpras/tntgSarpras', [TentangSarPras::class, 'create']);
+Route::patch('/sarpras/tntgSarpras/{id}', [TentangSarPras::class, 'update']);
+// ORGANISASI SARPRAS
+Route::get('/sarpras/orgnssSarpras', OrganisasiSarPras::class)->name('showSOSarprasPage');
+// CRUD ORGANISASI SARPRAS
+Route::post('/sarpras/orgnssSarpras', [OrganisasiSarPras::class, 'create']);
+Route::patch('/sarpras/orgnssSarpras/{id}', [OrganisasiSarPras::class, 'update']);
+//PROGRAM KERJA SARPRAS
+Route::get('/sarpras/prgrmkrjSarpras', ProgramKerjaSarPras::class)->name('showPKSarprasPage');
+// CRUD ORGANISASI SARPRAS
+Route::post('/sarpras/prgrmkrjSarpras', [ProgramKerjaSarPras::class, 'create']);
+Route::patch('/sarpras/prgrmkrjSarpras/{id}', [ProgramKerjaSarPras::class, 'update']);
+//FASILITAS SEKOLAH
+Route::get('/sarpras/fasSekolah', FasilitasSekolah::class)->name('showFasilitasPage');
+// CRUD FASILITAS SEKOLAH
+Route::post('/sarpras/fasSekolah', [ProgramKerjaSarPras::class, 'create']);
+Route::patch('/sarpras/fasSekolah/{id}', [ProgramKerjaSarPras::class, 'update']);
+
 // Perpus
 Route::get('/perpus/tntgPerpus', TentangPerpustakaan::class);
 Route::get('/perpus/orgnssPerpus', OrganisasiPerpustakaan::class);

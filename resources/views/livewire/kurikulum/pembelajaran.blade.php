@@ -1,11 +1,24 @@
 <main id="main">
     @foreach ($data as $data)
-        <section id="hero" class="d-flex align-items-center" >
-            <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200">
-                <h1>{{ $data->nama }}</h1>
+         <!-- {{-- Hero section --}} -->
+    @if ($dataHero->count())
+    @foreach ($dataHero as $i)
+    <section id="heroo" class="d-flex align-items-center position-relative w-100"
+        style="background: url ({{ asset('storage/'.$i->imgIden) }}) center center !important; background-size: cover !important; position: relative !important;">
+        @endforeach
+        @else
+        <section id="hero" class="d-flex align-items-center">
+            @endif
+            <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200" style="
+        height: 200px;">
+                <h1>{{ $data->nama }}</h1>                
             </div>
+            @if ($dataHero->count())
         </section>
-    @endforeach
+        @else
+    </section>
+    @endif
+    <!-- End Hero -->
 
     <!-- ======= fasSek Section ======= -->
     <section id="pembelajaran" class="portfolio">
@@ -109,4 +122,5 @@
           </div>
         </div>
     </section>
+    @endforeach
 </main>

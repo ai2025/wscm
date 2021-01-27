@@ -5,6 +5,7 @@ use App\Models\IdentitasSekolah;
 use App\Models\Blog;
 use Te7aHoudini\LaravelTrix\Models\TrixAttachment;
 use Livewire\Component;
+use App\Models\ImgCarIdenSekolah;
 
 class Akreditasi extends Component
 {
@@ -67,9 +68,12 @@ class Akreditasi extends Component
     {
         // dd(request('blog-trixFields'));
         $trad = TrixAttachment::where('is_pending', 1)->get();
-        $this->t_content_img = $trad[0]['attachment'];
-        unlink('storage/' . $this->t_content_img);
-        TrixAttachment::where('is_pending', 1)->delete();
+        if (count($trad) > 0) {
+            // dd("NULL");
+            $this->t_content_img = $trad[0]['attachment'];
+            unlink('storage/' . $this->t_content_img);
+            TrixAttachment::where('is_pending', 1)->delete();
+        }
         session()->flash('msgWar', 'Anda telah membatalkan aksi.');
         return redirect()->route('showAkreditasiPage');
     }
@@ -79,11 +83,18 @@ class Akreditasi extends Component
         return IdentitasSekolah::orderBy('created_at', 'DESC')->get();
     }
 
+    public function readHero($tag)
+    {
+        return ImgCarIdenSekolah::select("*")->where('kategori', $tag)->get();
+        // $this->resetPage();
+    }
+
     public function render()
     {
         return view('livewire.kurikulum.akreditasi', [
             'data'=> $this->read(),
-            'blog' => $this->readBlog(),
+            'data' => $this->read(),
+            'dataHero' => $this->readHero('header'),
         ])->layout('layouts.landingpage', [
             'data'=> $this->read(),
         ]);

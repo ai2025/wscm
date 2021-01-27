@@ -5,6 +5,7 @@ use App\Models\IdentitasSekolah;
 use Livewire\Component;
 use App\Models\Blog;
 use Te7aHoudini\LaravelTrix\Models\TrixAttachment;
+use App\Models\ImgCarIdenSekolah;
 
 class ProgramKerjaHumas extends Component
 {
@@ -67,11 +68,20 @@ class ProgramKerjaHumas extends Component
     {
         // dd(request('blog-trixFields'));
         $trad = TrixAttachment::where('is_pending', 1)->get();
-        $this->t_content_img = $trad[0]['attachment'];
-        unlink('storage/' . $this->t_content_img);
-        TrixAttachment::where('is_pending', 1)->delete();
+        if (count($trad) > 0) {
+            // dd("NULL");
+            $this->t_content_img = $trad[0]['attachment'];
+            unlink('storage/' . $this->t_content_img);
+            TrixAttachment::where('is_pending', 1)->delete();
+        }
         session()->flash('msgWar', 'Anda telah membatalkan aksi.');
         return redirect()->route('showPKHumasPage');
+    }
+
+    public function readHero($tag)
+    {
+        return ImgCarIdenSekolah::select("*")->where('kategori', $tag)->get();
+        // $this->resetPage();
     }
 
     public function read()
@@ -84,6 +94,7 @@ class ProgramKerjaHumas extends Component
         return view('livewire.humas.program-kerja-humas', [
             'data'=> $this->read(),
             'blog' => $this->readBlog(),
+            'dataHero' => $this->readHero('header'),
         ])->layout('layouts.landingpage', [
             'data'=> $this->read(),
         ]);
