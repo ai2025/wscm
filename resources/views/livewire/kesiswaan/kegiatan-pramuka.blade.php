@@ -23,7 +23,7 @@
     <!-- ======= fasSek Section ======= -->
     <section id="kegPramuka" class="portfolio">
         <div class="container">
-            <div class="section-title" data-aos="fade-left">
+            <div class="section-title">
                 @if ($togglePage && $id_blog)
                 <h2>Update Kegiatan Pramuka</h2>
                 @elseif ($togglePage)

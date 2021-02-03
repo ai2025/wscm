@@ -302,8 +302,8 @@
             </div>
             
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                <button type="button" class="btn btn-danger" wire:click="deleteImg">Yakin</button>
+                {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                <button type="button" class="btn btn-danger" wire:click="deleteImg">Yakin</button> --}}
             </div>
         </div>
     </div>

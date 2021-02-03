@@ -24,7 +24,7 @@
     <!-- ======= fasSek Section ======= -->
     <section id="tentangSarPras" class="portfolio">
         <div class="container">
-            <div class="section-title" data-aos="fade-left">
+            <div class="section-title">
                 @if ($togglePage && $id_blog)
                 <h2>Update Tentang (SarPras)</h2>
                 @elseif ($togglePage)
