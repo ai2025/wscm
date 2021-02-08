@@ -8,7 +8,7 @@
         <title>SMK Negeri 1 Grujugan</title>
 
         <!-- Favicons -->
-        <link href="{{ asset('tpl/img/favicon.png') }}" rel="icon">
+        <link href="{{ asset('tpl/img/logosekolah.png') }}" rel="icon">
         <link href="{{ asset('tpl/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
         
