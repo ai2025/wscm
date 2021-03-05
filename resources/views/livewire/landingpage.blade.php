@@ -36,11 +36,11 @@
     <!-- End Hero -->
 
     <!-- ======= Counts Section ======= -->
-    <section id="counts" class="counts">
+    {{-- <section id="counts" class="counts">
         <div class="container">
-            @if (session()->has('msgUpdateJumlah'))
+            @if (session()->has('msgUpdateJumlah')) --}}
             {{-- <p class="mb-0">{{ session('msgUpdateIdentitas') }}</p> --}}
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{-- <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <strong>Yay!</strong> {{ session('msgUpdateJumlah') }}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -48,9 +48,9 @@
             </div>
             @endif
             @if ($dataa->count())
-            @foreach ($dataa as $dataa)
+            @foreach ($dataa as $dataa) --}}
             {{-- @foreach ($data as $dataa) --}}
-            <h2 class="mx-auto text-center">SMK Negeri 1 Grujugan</h2>
+            {{-- <h2 class="mx-auto text-center">SMK Negeri 1 Grujugan</h2>
             <div class="row counters">
                 <div class="col-lg-3 col-6 text-center">
                     <span data-toggle="counter-up">{{ $dataa->jmlhSis }}</span>
@@ -95,9 +95,9 @@
 
             @endauth
             @endif
-        </div>
+        </div> --}}
         <!-- Modal -->
-        <div wire:ignore.self class="modal fade" id="updateJumlahMDL" data-backdrop="static" data-keyboard="false"
+        {{-- <div wire:ignore.self class="modal fade" id="updateJumlahMDL" data-backdrop="static" data-keyboard="false"
             tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                 <div class="modal-content">
@@ -140,7 +140,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- End Counts Section -->
 
     <!-- Identitas Sekolah Section -->

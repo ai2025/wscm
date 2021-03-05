@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\KodeAkses;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $value = KodeAkses::select('*')->get()->count();
+        view()->share('kd', $value);
     }
 }

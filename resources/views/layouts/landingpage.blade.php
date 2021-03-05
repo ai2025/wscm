@@ -100,7 +100,14 @@
                         <ul>
                             <li><a href="{{ url('/bkk/tntgBKK') }}">Tentang (BKK)</a></li>
                             <li><a href="{{ url('/bkk/orgnssBKK') }}">Organisasi (BKK)</a></li>
+                            @auth
                             <li><a href="{{ url('/bkk/inputDataAlumni') }}">Input Data Alumni</a></li>
+                            @else
+                            @if ($kd > 0)
+                            <li><a href="{{ url('/bkk/inputDataAlumni') }}">Input Data Alumni</a></li>
+                            @endif
+                            @endauth
+                            
                         </ul>
                     </li>
                     

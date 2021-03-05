@@ -7,14 +7,17 @@ use Illuminate\Validation\Rule;
 use App\Models\IdentitasSekolah;
 use App\Models\DataAlumni;
 use App\Models\ImgCarIdenSekolah;
+use App\Models\KodeAkses;
 
 class InputDataAlumni extends Component
 {
     public $namaAlumni, $nisAlumni, $tmptLahir, $tglLahir, $telpAlumni, $emailAlumni, $gender;
     public $jurusanAlumni, $thnLulus, $pkl, $pengalamanKrj, $statusPkrjaan, $tmptKerKul, $id_alumni;
+    public $id_kode, $kodeAksesIn, $kodeAkses, $noWaAdm, $cek;
+    public $kdAkses = true, $ask = false, $tes = false, $formAl = false;
     // public $dat = [];
 
-    // public $judulAlumni = [
+    // public $listAlumni = [
     //     'namaAlumni' => 'Nama Alumni',
     //     'nisAlumni' => 'NIS',
     //     'tmptLahir' => 'Tempat Lahir',
@@ -176,6 +179,77 @@ class InputDataAlumni extends Component
         // $this->resetPage();
     }
 
+    public function readKodeAkses()
+    {
+        return KodeAkses::orderBy('created_at', 'DESC')->get();
+    }
+
+    public function loadKodeAkses()
+    {
+        foreach ($this->readKodeAkses() as $kd) {
+            $this->id_kode = $kd->id;
+            $this->kodeAkses = $kd->kodeAkses;
+            $this->noWaAdm = $kd->noWaAdm;
+        }
+    }
+
+    public function createKode()
+    {
+        $validatedData = $this->validate([
+            'kodeAkses' => ['required', 'min:5'],
+            'noWaAdm' => ['required', 'numeric'],
+        ]);
+        KodeAkses::create($validatedData);
+        session()->flash('msgAlumni', ' Jumlah successfully added.');
+        return redirect()->to('/bkk/inputDataAlumni');
+    }
+
+    public function updateKode()
+    {
+        $validatedData = $this->validate([
+            'kodeAkses' => ['required', 'min:5'],
+            'noWaAdm' => ['required', 'numeric'],
+        ]);
+        KodeAkses::find($this->id_kode)->update($validatedData);
+        session()->flash('msgAlumni', ' Jumlah successfully UPDATED.');
+        return redirect()->to('/bkk/inputDataAlumni');
+    }
+
+    public function cekKode()
+    {
+        if ($this->readKodeAkses()->count() > 0) {
+            $this->loadKodeAkses();
+            if ($this->kodeAkses == $this->kodeAksesIn) {
+                $this->kdAkses = false;
+                $this->ask = false;
+                $this->formAl = true;
+                $this->tes = false;
+            } else {
+                $this->ask = false;
+                $this->tes = true;
+                $this->formAl = false;
+            }
+        } else {
+            session()->flash('msgAlumni', ' KODE BELUM ADA.');
+        }
+    }
+
+    public function toggleAcc($page)
+    {
+        if ($page == 1) {
+            $this->kdAkses = false;
+            $this->ask = true;
+            $this->formAl = false;
+        } else if ($page == 2) {
+            $this->kdAkses = true;
+            $this->ask = false;
+            $this->formAl = false;
+        } else if ($page == 3) {
+            $this->cekKode();
+        } else {
+        }
+    }
+
 
     public function render()
     {
@@ -183,6 +257,7 @@ class InputDataAlumni extends Component
             'data' => $this->read(),
             'dataa' => $this->readAlumni(),
             'dataHero' => $this->readHero('header'),
+            'dataKode' => $this->readKodeAkses(),
         ])->layout('layouts.landingpage', [
             'data' => $this->read(),
         ]);

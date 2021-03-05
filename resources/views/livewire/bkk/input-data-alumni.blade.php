@@ -12,7 +12,7 @@
             @endif
             <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200" style="
         height: 200px;">
-                <h1>{{ $data->nama }}</h1>                
+                <h1>{{ $data->nama }}</h1>
             </div>
             @if ($dataHero->count())
         </section>
@@ -26,10 +26,32 @@
     <section id="pkl" class="portfolio">
         <div class="container">
             <div class="section-title">
-                <h2>Input Data Alumni</h2>                
+                @if (session()->has('msgAlumni'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Yay!</strong> {{ session('msgAlumni') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                @endif
+                <h2>Input Data Alumni</h2>
             </div>
-            {{-- TABEL --}}
+            <div class="mb-4">
+                @if ($dataKode->count() > 0)
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#aksesMDL" data-msg=""
+                    wire:click="loadKodeAkses()">
+                    Update Kode Akses
+                </button>
+                @else
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#aksesMDL" data-msg="">
+                    Tambah Kode Akses
+                </button>
+                @endif
+            </div>
 
+
+            @if ($dataa->count() > 0)
+            {{-- TABEL --}}
             <div class="entry-content-page">
                 <div class="table-responsive">
 
@@ -106,8 +128,83 @@
                     </table> --}}
                 </div>
             </div>
+            @else
+            <h4>Data belum ada</h4>
+            <div>
+                @if ($dataKode->count() > 0)
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#aksesMDL" data-msg=""
+                    wire:click="loadKodeAkses()">
+                    Update Kode Akses
+                </button>
+                @else
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#aksesMDL" data-msg="">
+                    Tambah Kode Akses
+                </button>
+                @endif
+            </div>
+            <!-- Modal -->
+            <div wire:ignore.self class="modal fade" id="aksesMDL" data-backdrop="static" data-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 style="color: black" class="modal-title" id="staticBackdropLabel">
+                                @if ($id_kode)
+                                Update Kode Akses
+                                @else
+                                Create Kode Akses
+                                @endif
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form wire:submit.prevent="submit" class="php-email-form">
+                                {{-- @foreach($judulJmlh as $kode => $i) --}}
+                                <div class="form-group">
+                                    <label for="kodeAkses" style="color: black">Kode Akses</label>
+                                    <input type="text" class="form-control" name="kodeAkses" id="kodeAkses"
+                                        wire:model.debounce.800ms="kodeAkses" />
+                                    @error('kodeAkses')
+                                    <span id="error-msg">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="noWaAdm" style="color: black">No. WhatsApp Admin</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">+62</div>
+                                        </div>
+                                        <input type="text" class="form-control" name="noWaAdm" id="noWaAdm"
+                                            wire:model.debounce.800ms="noWaAdm" />
+                                    </div>
 
-        </div>
+                                    @error('noWaAdm')
+                                    <span id="error-msg">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                {{-- @endforeach --}}
+                                <div class="modal-footer">
+                                    <input type="hidden" name="id_kode" wire:model="id_kode">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    @if ($id_kode)
+                                    <button type="button" class="btn btn-primary"
+                                        wire:click="updateKode">Update</button>
+                                    @else
+                                    <button type="button" class="btn btn-primary"
+                                        wire:click="createKode">Create</button>
+                                    @endif
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    @endif
+
+    </div>
     </section>
     @else
     <section id="contact" class="contact">
@@ -128,11 +225,61 @@
                 </div>
 
                 <div class="col-lg-8">
-                    {{-- <div id="form"> --}}
-                    {{-- <div class="row">
-                        <div class="col-lg-6">
+                    @if ($kdAkses)
+                    <div id="kdAkses">
+                        <div class="alert alert-warning" role="alert">
+                            <h4 class="alert-heading">Halo!</h4>
+                            <p>Apakah Anda alumni dan belum memiliki kode akses?</p>
+                            <hr>
+                            <p class="mb-0">Untuk meminta kode akses, silakan <a href="#" class="alert-link"
+                                    wire:click="toggleAcc(1)">KLIK DISINI</a>.</p>
                         </div>
-                    </div> --}}
+
+                        @if ($tes)
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Kode Anda salah!
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        @endif
+
+                        <div>
+                            Kode Akses : <br>
+                            <input wire:model="kodeAksesIn" type="text" name="kodeAksesIn"
+                                class="form-control col-lg-8 float-left" id="kodeAksesIn" placeholder="Kode Akses" />
+                            <button type="button" class="btn btn-success ml-3" wire:click="toggleAcc(3)">Akses
+                                Form</button>
+
+                        </div>
+                    </div>
+                    @elseif ($ask)
+                    @foreach ($dataKode as $item)
+                    <div id="ask">
+                        <div>
+                            Nama Alumni : <br>
+                            <input wire:model="namaAlumni" type="text" name="namaAlumni" class="form-control"
+                                id="namaAlumni" placeholder="Nama Alumni" autofocus />
+                        </div>
+                        <div class="mt-3">
+                            NIS : <br>
+                            <input wire:model="nisAlumni" type="text" class="form-control" name="nisAlumni"
+                                id="nisAlumni" placeholder="NIS" />
+                        </div>
+                        <div class="mt-2">
+                            <button type="button" class="btn btn-warning" wire:click="toggleAcc(2)">Kembali</button>
+                            <a href="https://api.whatsapp.com/send?phone=+62{{ $item->noWaAdm }}&text=Halo%2C%0ANama%20saya%20{{ $namaAlumni }}%0ANIS%20saya%20{{ $nisAlumni }}"
+                                target="_blank">
+                                <button class="btn btn-success float-right">
+                                    <img src="https://web.whatsapp.com/img/favicon/1x/favicon.png"> Whatsapp Kami
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    @endforeach
+
+                    @elseif ($formAl)
+
                     <form wire:submit.prevent="submit" class="php-email-form">
                         <div class="form-row">
                             <div class="col-md-6 form-group">
@@ -261,6 +408,8 @@
                             </div>
                         </div>
                     </form>
+
+                    @endif
                 </div>
             </div>
         </div>
@@ -270,43 +419,71 @@
 
     <!-- Modal -->
     <div wire:ignore.self class="modal fade" id="detailAlumniMDL" data-backdrop="static" data-keyboard="false"
-    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Detail Data {{ $id_alumni }}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            
-            <div class="modal-body">
-                {{-- @foreach($judulAlumni as $kode => $i)
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Detail Data {{ $namaAlumni }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    {{-- @foreach ($listAlumni as $key => $value) --}}
+                    {{-- {{ $value }} = {{  }} --}}
+                    {{-- <hr> --}}
+                    {{-- @endforeach --}}
+                    {{-- @foreach($judulAlumni as $kode => $i)
                 @foreach ($dat as $d)
                 {{ $i }} = {{ $d }} <br>
-                @endforeach
-                @endforeach --}}
-                    Nama Alumni : <span>{{ $namaAlumni}}</span> <br>
-                    NIS Alumni : <span>{{ $nisAlumni}}</span> <br>
-                    Tempat Lahir : <span>{{ $tmptLahir}}</span> <br>
-                    Tanggal Lahir : <span>{{ $tglLahir}}</span> <br>
-                    No. HP : <span>{{ $telpAlumni}}</span> <br>
-                    Email : <span>{{ $emailAlumni}}</span> <br>
-                    Jenis Kelamin : <span>{{ $gender}}</span> <br>
-                    Jurusan : <span>{{ $jurusanAlumni}}</span> <br>
-                    Tahun Lulus : <span>{{ $thnLulus}}</span> <br>
-                    PKL : <span>{{ $pkl}}</span> <br>
-                    Pengalaman Kerja : <span>{{ $pengalamanKrj}}</span> <br>
-                    Status Pekerjaan : <span>{{ $statusPkrjaan}}</span> <br>
-                    Tempat Kerja / Kuliah : <span>{{ $tmptKerKul}}</span> <br>
-            </div>
-            
-            <div class="modal-footer">
-                {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                    @endforeach
+                    @endforeach --}}
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm">
+                                <p class="mb-1">Nama Alumni : <span>{{ $namaAlumni}}</span></p>
+                                <hr class="mt-0">
+                                <p class="mb-1">NIS Alumni : <span>{{ $nisAlumni}}</span></p>
+                                <hr class="mt-0">
+                                <p class="mb-1">Tempat Lahir : <span>{{ $tmptLahir}}</span></p>
+                                <hr class="mt-0">
+                                <p class="mb-1">Tanggal Lahir : <span>{{ $tglLahir}}</span></p>
+                                <hr class="mt-0">
+                                <p class="mb-1">No. HP : <span>{{ $telpAlumni}}</span></p>
+                                <hr class="mt-0">
+                                <p class="mb-1">Email : <span>{{ $emailAlumni}}</span></p>
+                                <hr class="mt-0">
+                                <p class="mb-1">Jenis Kelamin : <span>{{ $gender}}</span></p>
+                                <hr class="mt-0">
+                            </div>
+                            <div class="col-sm">
+                                <p class="mb-1">Jurusan : <span>{{ $jurusanAlumni}}</span></p>
+                                <hr class="mt-0">
+                                <p class="mb-1">Tahun Lulus : <span>{{ $thnLulus}}</span></p>
+                                <hr class="mt-0">
+                                <p class="mb-1">PKL : <span>{{ $pkl}}</span></p>
+                                <hr class="mt-0">
+                                <p class="mb-1">Pengalaman Kerja : <span>{{ $pengalamanKrj}}</span></p>
+                                <hr class="mt-0">
+                                <p class="mb-1">Status Pekerjaan : <span>{{ $statusPkrjaan}}</span></p>
+                                <hr class="mt-0">
+                                <p class="mb-1">Tempat Kerja / Kuliah : <span>{{ $tmptKerKul}}</span></p>
+                                <hr class="mt-0">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
                 <button type="button" class="btn btn-danger" wire:click="deleteImg">Yakin</button> --}}
+                </div>
             </div>
         </div>
     </div>
-</div>
-@endforeach
+    @endforeach
 </main>
