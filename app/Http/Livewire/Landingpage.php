@@ -100,7 +100,8 @@ class Landingpage extends Component
 
     public function read()
     {
-        return IdentitasSekolah::orderBy('created_at', 'DESC')->get();
+        return IdentitasSekolah::all();
+        // return IdentitasSekolah::orderBy('created_at', 'DESC')->get();
     }
 
     public function readJmlh()
@@ -245,6 +246,11 @@ class Landingpage extends Component
         ];
     }
 
+    public function cobadd()
+    {
+        dd($this->read());
+    }
+
     /**
      * viewnya
      *
@@ -257,6 +263,7 @@ class Landingpage extends Component
             'data' => $this->read(),
             'dataa' => $this->readJmlh(),
             'dataHero' => $this->readHero('header'),
+            'dt' => $this->read(),
         ])->layout('layouts.landingpage', [
             'data' => $this->read(),
         ]);

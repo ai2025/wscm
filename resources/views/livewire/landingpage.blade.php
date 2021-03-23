@@ -29,10 +29,9 @@
         </div>
     </section>
     @endif
-    
     <!-- End Hero -->
 
-    <!-- ======= Counts Section ======= -->
+     <!-- ======= Counts Section ======= -->
     {{-- <section id="counts" class="counts">
         <div class="container">
             @if (session()->has('msgUpdateJumlah')) --}}
@@ -149,8 +148,8 @@
 
             <div class="d-block align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
                 <div class="icon-box">
-                    @if ($data->count())
-                    @foreach ($data as $data)
+                    @if ($dt->count() > 0)
+                    @foreach ($dt as $d)
                     <ul class="list-group list-group-flush text-left mt-3 pr-5 pl-5 pb-3">
                         @php
                         $count = 0;
@@ -161,27 +160,27 @@
                                 @foreach($judul as $code => $item)
                                 @if ($count < 3) <li class="list-group-item border-bottom">
                                     <p>
-                                        {{ __($item) }} &ensp; : &ensp; {{ $data->$code }}
+                                        {{ __($item) }} &ensp; : &ensp; {{ $d->$code }}
                                     </p>
                                     </li>
                                     @php
                                     $count++;
                                     @endphp
-                                    @endif
-                                    @endforeach
+                                @endif
+                                @endforeach
                             </div>
                             <div class="col list-group-flush">
                                 @foreach($judul as $code => $item)
                                 @if ($co < 3) @php $co++; @endphp @else <li class="list-group-item border-bottom">
                                     <p>
-                                        {{ __($item) }} &ensp; : &ensp; {{ $data->$code }}
+                                        {{ __($item) }} &ensp; : &ensp; {{ $d->$code }}
                                     </p>
                                     </li>
                                     @php
                                     $co++;
                                     @endphp
-                                    @endif
-                                    @endforeach
+                                @endif
+                                @endforeach
                             </div>
                         </div>
                     </ul>
@@ -202,7 +201,6 @@
                 <div class="col-lg-4">
                     <div class="section-title" data-aos="fade-right">
                         <h2>Paket Keahlian</h2>
-                        {{-- <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem.</p> --}}
                     </div>
                 </div>
                 <div class="col-lg-8">
@@ -211,7 +209,6 @@
                             <div class="icon-box" data-aos="zoom-in" data-aos-delay="100">
                                 <div class="icon"><i class="bx bx-spa"></i></div>
                                 <h4><a href="{{ url('/paketKeahlian/agbsnsTani') }}">Agribisnis Pengolahan Hasil Pertanian</a></h4>
-                                {{-- <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p> --}}
                             </div>
                         </div>
 
@@ -219,7 +216,6 @@
                             <div class="icon-box" data-aos="zoom-in" data-aos-delay="200">
                                 <div class="icon"><i class="bx bx-water"></i></div>
                                 <h4><a href="{{ url('/paketKeahlian/agbsnsIkan') }}">Agribisnis Pengolahan Hasil Perikanan</a></h4>
-                                {{-- <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p> --}}
                             </div>
                         </div>
 
