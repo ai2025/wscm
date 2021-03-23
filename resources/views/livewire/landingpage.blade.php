@@ -1,38 +1,35 @@
 <main id="main">
-    @foreach ($data as $data)
-
     <!-- {{-- Hero section --}} -->
     @if ($dataHero->count())
     @foreach ($dataHero as $i)
     <section id="heroo" class="d-flex align-items-center position-relative w-100"
-        style="background: url({{ 'storage/'.$i->imgIden }}) center center !important; background-size: cover !important; position: relative !important;">
-        @endforeach
-        @else
-        <section id="hero" class="d-flex align-items-center">
-            @endif
-            <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200" style="
+        style="background: url({{ asset('storage/'.$i->imgIden) }}) center center !important; background-size: cover !important; position: relative !important;">
+        <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200" style="
         height: 200px;">
-                <h1>{{ $data->nama }}</h1>
-                @auth
-                @if ($dataHero->count())
-                @foreach ($dataHero as $dh)
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#heroMDL"
-                    wire:click="loadDataHero({{ $dh->id }})">
-                    Update Background
-                </button>
-                @endforeach
-                @else
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#heroMDL">
-                    Tambah Background
-                </button>
-                @endif
-                @endauth
-            </div>
-            @if ($dataHero->count())
-        </section>
-        @else
+            @if ($data->count())
+            @foreach ($data as $data)
+            <h1>{{ $data->nama }}</h1>
+            @endforeach
+            @else
+            <h1>Nama sekolah belum tersedia</h1>
+            @endif
+        </div>
+    </section>
+    @endforeach
+    @else
+    <section id="hero" class="d-flex align-items-center">
+        <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200" style="height: 200px;">
+            @if ($data->count())
+            @foreach ($data as $data)
+            <h1>{{ $data->nama }}</h1>
+            @endforeach
+            @else
+            <h1>Nama sekolah belum tersedia</h1>
+            @endif
+        </div>
     </section>
     @endif
+    
     <!-- End Hero -->
 
     <!-- ======= Counts Section ======= -->
@@ -152,6 +149,8 @@
 
             <div class="d-block align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
                 <div class="icon-box">
+                    @if ($data->count())
+                    @foreach ($data as $data)
                     <ul class="list-group list-group-flush text-left mt-3 pr-5 pl-5 pb-3">
                         @php
                         $count = 0;
@@ -186,6 +185,10 @@
                             </div>
                         </div>
                     </ul>
+                    @endforeach
+                    @else
+                    <h1>Data sekola belum tersedia</h1>
+                    @endif
                 </div>
             </div>
         </div>
@@ -241,7 +244,7 @@
         </div>
     </section>
     <!-- End Team Section -->
-    @endforeach
+    {{-- @endforeach --}}
 
     <!-- Modal -->
     <div wire:ignore.self class="modal fade" id="heroMDL" data-backdrop="static" data-keyboard="false" tabindex="-1"

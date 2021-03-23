@@ -1,24 +1,35 @@
 <main id="main">
-    @foreach ($data as $data)
-
     <!-- {{-- Hero section --}} -->
     @if ($dataHero->count())
     @foreach ($dataHero as $i)
     <section id="heroo" class="d-flex align-items-center position-relative w-100"
         style="background: url({{ asset('storage/'.$i->imgIden) }}) center center !important; background-size: cover !important; position: relative !important;">
-        @endforeach
-        @else
-        <section id="hero" class="d-flex align-items-center">
-            @endif
-            <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200" style="
+        <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200" style="
         height: 200px;">
-                <h1>{{ $data->nama }}</h1>
-            </div>
-            @if ($dataHero->count())
-        </section>
-        @else
+            @if ($data->count())
+            @foreach ($data as $data)
+            <h1>{{ $data->nama }}</h1>
+            @endforeach
+            @else
+            <h1>Nama sekolah belum tersedia</h1>
+            @endif
+        </div>
+    </section>
+    @endforeach
+    @else
+    <section id="hero" class="d-flex align-items-center">
+        <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200" style="height: 200px;">
+            @if ($data->count())
+            @foreach ($data as $data)
+            <h1>{{ $data->nama }}</h1>
+            @endforeach
+            @else
+            <h1>Nama sekolah belum tersedia</h1>
+            @endif
+        </div>
     </section>
     @endif
+    
     <!-- End Hero -->
 
     <!-- ======= inputDataAlumni Section ======= -->
@@ -142,65 +153,6 @@
                 </button>
                 @endif
             </div>
-            <!-- Modal -->
-            <div wire:ignore.self class="modal fade" id="aksesMDL" data-backdrop="static" data-keyboard="false"
-                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 style="color: black" class="modal-title" id="staticBackdropLabel">
-                                @if ($id_kode)
-                                Update Kode Akses
-                                @else
-                                Create Kode Akses
-                                @endif
-                            </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form wire:submit.prevent="submit" class="php-email-form">
-                                {{-- @foreach($judulJmlh as $kode => $i) --}}
-                                <div class="form-group">
-                                    <label for="kodeAkses" style="color: black">Kode Akses</label>
-                                    <input type="text" class="form-control" name="kodeAkses" id="kodeAkses"
-                                        wire:model.debounce.800ms="kodeAkses" />
-                                    @error('kodeAkses')
-                                    <span id="error-msg">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="noWaAdm" style="color: black">No. WhatsApp Admin</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">+62</div>
-                                        </div>
-                                        <input type="text" class="form-control" name="noWaAdm" id="noWaAdm"
-                                            wire:model.debounce.800ms="noWaAdm" />
-                                    </div>
-
-                                    @error('noWaAdm')
-                                    <span id="error-msg">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                {{-- @endforeach --}}
-                                <div class="modal-footer">
-                                    <input type="hidden" name="id_kode" wire:model="id_kode">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    @if ($id_kode)
-                                    <button type="button" class="btn btn-primary"
-                                        wire:click="updateKode">Update</button>
-                                    @else
-                                    <button type="button" class="btn btn-primary"
-                                        wire:click="createKode">Create</button>
-                                    @endif
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
     </section>
     @endif
 
@@ -268,7 +220,7 @@
                         </div>
                         <div class="mt-2">
                             <button type="button" class="btn btn-warning" wire:click="toggleAcc(2)">Kembali</button>
-                            <a href="https://api.whatsapp.com/send?phone=+62{{ $item->noWaAdm }}&text=Halo%2C%0ANama%20saya%20{{ $namaAlumni }}%0ANIS%20saya%20{{ $nisAlumni }}"
+                            <a href="https://api.whatsapp.com/send?phone=+62{{ $item->noWaAdm }}&text=Halo%2C%0ANama%20saya%20{{ $namaAlumni }}%0ANIS%20saya%20{{ $nisAlumni }}%0ASaya%20ingin%20meminta%20kode%20akses%0ATerima%20kasih"
                                 target="_blank">
                                 <button class="btn btn-success float-right">
                                     <img src="https://web.whatsapp.com/img/favicon/1x/favicon.png"> Whatsapp Kami
@@ -485,5 +437,66 @@
             </div>
         </div>
     </div>
-    @endforeach
+    {{-- @endforeach --}}
+
+    <!-- Modal -->
+    <div wire:ignore.self class="modal fade" id="aksesMDL" data-backdrop="static" data-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 style="color: black" class="modal-title" id="staticBackdropLabel">
+                    @if ($id_kode)
+                    Update Kode Akses
+                    @else
+                    Create Kode Akses
+                    @endif
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form wire:submit.prevent="submit" class="php-email-form">
+                    {{-- @foreach($judulJmlh as $kode => $i) --}}
+                    <div class="form-group">
+                        <label for="kodeAkses" style="color: black">Kode Akses</label>
+                        <input type="text" class="form-control" name="kodeAkses" id="kodeAkses"
+                            wire:model.debounce.800ms="kodeAkses" />
+                        @error('kodeAkses')
+                        <span id="error-msg">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="noWaAdm" style="color: black">No. WhatsApp Admin</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">+62</div>
+                            </div>
+                            <input type="text" class="form-control" name="noWaAdm" id="noWaAdm"
+                                wire:model.debounce.800ms="noWaAdm" />
+                        </div>
+
+                        @error('noWaAdm')
+                        <span id="error-msg">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    {{-- @endforeach --}}
+                    <div class="modal-footer">
+                        <input type="hidden" name="id_kode" wire:model="id_kode">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        @if ($id_kode)
+                        <button type="button" class="btn btn-primary"
+                            wire:click="updateKode">Update</button>
+                        @else
+                        <button type="button" class="btn btn-primary"
+                            wire:click="createKode">Create</button>
+                        @endif
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 </main>

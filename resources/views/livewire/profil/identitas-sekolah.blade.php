@@ -368,7 +368,7 @@
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="staticBackdropLabel">Delete Confirmation{{ $id_img }}</h5>
+                                <h5 class="modal-title" id="staticBackdropLabel">Delete Confirmation</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"
                                     wire:click="reloadPage">
                                     <span aria-hidden="true">&times;</span>
